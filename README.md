@@ -19,7 +19,7 @@ Please open the file "TextToSpeech.py" and write your access key and secret acce
 2) Your output is: output.pdf(in project folder) which you should print(please use dpi=1200) and file with .gme type in "tttool" folder, which should be moved to the pen
 
 ## What does each part of the project do?
-main.py  - activates all parts of the project
+main.py  - activates all parts of the project //
 GUI.py - is responsible for the graphical interface where users enter text. At the output, it generates a document with circles and a file (json type) with the coordinates of each circle and the corresponding text
 TextToSpeech.py - Reads text from a json file and generates audio using amazon polly
 OIDmaker.py - Using audio files, it generates a .yaml file which is then converted into a final .gme file. Also generates .png files with dots
