@@ -3,8 +3,8 @@ import json
 import os
 
 polly_client = boto3.Session(
-    aws_access_key_id='AKIAREIOMCYUHBVCSNXA',
-    aws_secret_access_key='8QRhv7ICdfE1+niKf4JRBZOP6BN4QP2Lm5fE5HCp',
+    aws_access_key_id='WRITE YOUR ACCESS KEY',
+    aws_secret_access_key='WRITE YOUR SECRET ACCESS KEY',
     region_name='us-west-2'
 ).client('polly')
 
