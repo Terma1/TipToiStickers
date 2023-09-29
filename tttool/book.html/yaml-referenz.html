@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>YAML-Referenz &#8212; Das tttool-Buch 1.11 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Tipps und Tricks" href="tipps-und-tricks.html" />
+    <link rel="prev" title="Die tttool-Befehle" href="tttool-referenz.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="tipps-und-tricks.html" title="Tipps und Tricks"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="tttool-referenz.html" title="Die tttool-Befehle"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">YAML-Referenz</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="yaml-referenz">
+<span id="id1"></span><h1>YAML-Referenz<a class="headerlink" href="#yaml-referenz" title="Permalink to this heading">¶</a></h1>
+<p>In diesem Kapitel erfährst du alle Details zur YAML-Datei, mit der du den Stift
+programmierst.</p>
+<section id="das-yaml-format">
+<h2>Das YAML-Format<a class="headerlink" href="#das-yaml-format" title="Permalink to this heading">¶</a></h2>
+<p>Das YAML-Format im Allgemeinen wurde nicht für dieses Projekt erfunden, sondern ist gebräuchlich, um strukturierte Daten in einer menschenlesbaren Textdatei abzulegen. Eine knappe Übersicht findest du auf der <a class="reference external" href="https://de.wikipedia.org/wiki/YAML">Wikipedia-Seite zu YAML</a>.
+Beachte, dass in YAML Einrückungen, also Leerzeichen am Anfang der Zeile, relevant sind und die Struktur der Datei beschreiben!</p>
+<p>Die YAML-Datei bearbeitest du mit dem Texteditor deiner Wahl (Notepad, vim etc.).</p>
+</section>
+<section id="yaml-datei-felder">
+<h2>YAML-Datei-Felder<a class="headerlink" href="#yaml-datei-felder" title="Permalink to this heading">¶</a></h2>
+<p>Eine typische, minimale YAML-Datei für die Tiptoi-Programmierung sieht so aus:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">product-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">950</span><span class="w"></span>
+<span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">8066</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(erstes_feld)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">8067</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(zweites_feld)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Zwingend nötig ist dabei streng genommen nur das Feld <code class="docutils literal notranslate"><span class="pre">product-id</span></code>, aber in der Regel brauchst du auch <code class="docutils literal notranslate"><span class="pre">scripts</span></code> um irgendetwas Sinnvolles zu machen.</p>
+<p>Es gibt noch eine Reihe weiterer, optionaler Felder, die im Folgenden erklärt werden. Eine etwas kompliziertere Datei könnte dann zum Beispiel so aussehen:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">product-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">950</span><span class="w"></span>
+<span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ein kurzer Kommentar</span><span class="w"></span>
+<span class="nt">welcome</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">willkommen</span><span class="w"></span>
+<span class="nt">media-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Audio/%s</span><span class="w"></span>
+<span class="nt">gme-lang</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GERMAN</span><span class="w"></span>
+<span class="nt">init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$modus:=10</span><span class="w"></span>
+<span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">haus</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(hello)</span><span class="w"></span>
+<span class="w">   </span><span class="nt">tuer</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(goodbye)</span><span class="w"></span>
+<span class="w">   </span><span class="nt">monster</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(warning)</span><span class="w"></span>
+<span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">en</span><span class="w"></span>
+<span class="nt">speak</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">hello</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello,</span><span class="nv"> </span><span class="s">friend!&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">goodbye</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Goodbye&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">warning</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Watch</span><span class="nv"> </span><span class="s">out.&quot;</span><span class="w"></span>
+<span class="nt">scriptcodes</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">haus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4718</span><span class="w"></span>
+<span class="w">   </span><span class="nt">tuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4716</span><span class="w"></span>
+<span class="w">   </span><span class="nt">warning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4717</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="product-id">
+<h3><code class="docutils literal notranslate"><span class="pre">product-id</span></code><a class="headerlink" href="#product-id" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Ein OID-Code im Bereich 0 bis 999</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">product-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">950</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Die Produkt-ID dieses Projekts. Das Anschaltfeld des Produktes sollte mit dem
+hier angegebenen OID-Code bedruckt sein.</p>
+</dd>
+</dl>
+<p>Es sollte zu jeder Produkt-ID nur eine GME-Datei auf den Stift geladen werden. Ravensburger zählt seine Produkte fortlaufend ab 1
+hoch und Sprachen werden mit 999 abwärts nummeriert. Wir raten dir für dein eigenes Projekt daher eine Zahl zwischen 900 und 950 zu wählen.</p>
+</section>
+<section id="comment">
+<h3><code class="docutils literal notranslate"><span class="pre">comment</span></code><a class="headerlink" href="#comment" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Ein Textstring</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Mein</span><span class="nv"> </span><span class="s">Tiptoi-Produkt&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Der Kommentar wird in der GME-Datei gespeichert, aber sonst ignoriert.</p>
+</dd>
+</dl>
+</section>
+<section id="welcome">
+<h3><code class="docutils literal notranslate"><span class="pre">welcome</span></code><a class="headerlink" href="#welcome" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Einen oder mehrere Audio-Dateinamen, durch Kommata getrennt</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">welcome</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hello</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Beim Aktivieren des Produktes werden die angegebenen Audio-Dateien abgespielt.</p>
+</dd>
+</dl>
+</section>
+<section id="media-path">
+<span id="id2"></span><h3><code class="docutils literal notranslate"><span class="pre">media-path</span></code><a class="headerlink" href="#media-path" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Ein Dateipfad, mit <code class="docutils literal notranslate"><span class="pre">%s</span></code> als Platzhalter</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">media-path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Audio/%s</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Gibt an, wo sich die Audiodateien befinden. Der Platzhalter <code class="docutils literal notranslate"><span class="pre">%s</span></code> wird dabei
+durch den in der YAML-Datei verwendeten Dateinamen ersetzt. Das Programm
+sucht nach allen geeigneten Dateiendungen (<code class="docutils literal notranslate"><span class="pre">.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">.ogg</span></code>, <code class="docutils literal notranslate"><span class="pre">.flac</span></code>, <code class="docutils literal notranslate"><span class="pre">.mp3</span></code>).</p>
+<p>Beispiel: Für den im <code class="docutils literal notranslate"><span class="pre">welcome:</span> <span class="pre">hello</span></code> angegebenen Begrüßungssound würde das
+<code class="docutils literal notranslate"><span class="pre">tttool</span></code> also die Datei <code class="docutils literal notranslate"><span class="pre">Audio/hello.ogg</span></code> einbinden.</p>
+<p>Beispiel 2: Wenn du <code class="docutils literal notranslate"><span class="pre">media-path:</span> <span class="pre">Audio/Schatzsuche_%s</span></code> verwendest, würde bei einem <code class="docutils literal notranslate"><span class="pre">welcome:</span> <span class="pre">hello</span></code> die Datei <code class="docutils literal notranslate"><span class="pre">Audio/Schatzsuche_hello.ogg</span></code> eingebunden werden.</p>
+</dd>
+</dl>
+</section>
+<section id="gme-lang">
+<h3><code class="docutils literal notranslate"><span class="pre">gme-lang</span></code><a class="headerlink" href="#gme-lang" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Eine Sprache (<code class="docutils literal notranslate"><span class="pre">GERMAN</span></code>, <code class="docutils literal notranslate"><span class="pre">ENGLISH</span></code>, <code class="docutils literal notranslate"><span class="pre">FRENCH</span></code>…)</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">gme-lang</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GERMAN</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Das Sprach-Feld der GME-Datei. Bei eigenen Produkten gibt es in der Regel
+keinen Grund, dieses Feld anzugeben.</p>
+</dd>
+</dl>
+</section>
+<section id="init">
+<span id="yaml-init"></span><h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this heading">¶</a></h3>
+<p>In diesem Feld werden Register (bzw. Variablen oder Speicherplätze) initialisiert. Beispielsweise werden hier
+Spielmodi oder Zähler auf 0 gesetzt, damit diese später mit einem
+vorgegebenen Wert starten können. Beispiel: Wird hier „$modus:=0 $i:=0“
+geschrieben, so werden nach Aktivierung des Projekts die beiden Variablen modus und
+i mit 0 gestartet.</p>
+</section>
+<section id="scripts">
+<h3><code class="docutils literal notranslate"><span class="pre">scripts</span></code><a class="headerlink" href="#scripts" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Eine Zuordnung von OID-Codes (oder Code-Namen) zu einer Liste von Skriptzeilen.</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">8067</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(hi)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">haus</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$mode==3? P(welcome)</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(goodbye)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Enthält die Logik dieses Tiptoi-Produktes und gibt für einen OID-Code an was geschehen soll, wenn du diesen Code antippst.</p>
+<p>Statt eines konkreten OID-Codes kann auch ein Code-Name angegeben werden, siehe Abschnitt „<a class="reference internal" href="#code-namen"><span class="std std-ref">scriptcodes</span></a>“.</p>
+<p>Die Skripte werden in Detail im Abschnitt „<a class="reference internal" href="#yaml-skripte"><span class="std std-ref">YAML-Programmierung</span></a>“ erklärt.</p>
+</dd>
+</dl>
+</section>
+<section id="language">
+<h3><code class="docutils literal notranslate"><span class="pre">language</span></code><a class="headerlink" href="#language" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Ein Sprach-Kürzel (<code class="docutils literal notranslate"><span class="pre">de</span></code>, <code class="docutils literal notranslate"><span class="pre">en</span></code>, <code class="docutils literal notranslate"><span class="pre">fr</span></code>…)</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Gibt die Sprache für die Sprachsynthese (siehe Feld <code class="docutils literal notranslate"><span class="pre">speak</span></code>) an.</p>
+</dd>
+</dl>
+</section>
+<section id="speak">
+<h3><code class="docutils literal notranslate"><span class="pre">speak</span></code><a class="headerlink" href="#speak" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Eine Zuordnung von Dateinamen zu Text</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">speak</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">hello</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello,</span><span class="nv"> </span><span class="s">friend!&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">goodbye</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Goodbye&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">warning</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Watch</span><span class="nv"> </span><span class="s">out.&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Gibt an, welche Audiodateien das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> per Text-to-Speech generieren
+soll, sofern es die entsprechenden Audiodateien nicht findet. Dabei wird die
+in <code class="docutils literal notranslate"><span class="pre">language</span></code> angegebene Sprache verwendet.</p>
+</dd>
+</dl>
+<p>Das tttool verfügt über ein integriertes Text-to-Speech tool, welches dir
+erlaubt, Texte automatisch vorgelesen zu bekommen. So kannst du deine Tiptoi-Entwicklung testen, bevor du alles Nötige aufgenommen hast.</p>
+<p>Solltest du Text-to-Speech in verschiedenen Sprachen benötigen, kannst du mehrere Abschnitte mit eigener Sprache angeben:</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">speak</span><span class="p">:</span><span class="w"></span>
+<span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">en</span><span class="w"></span>
+<span class="w">   </span><span class="nt">hello</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hello,</span><span class="nv"> </span><span class="s">friend!&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="nt">goodbye</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Goodbye&quot;</span><span class="w"></span>
+<span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span><span class="w"></span>
+<span class="w">   </span><span class="nt">warning</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Achtung!&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="scriptcodes">
+<span id="code-namen"></span><h3><code class="docutils literal notranslate"><span class="pre">scriptcodes</span></code><a class="headerlink" href="#scriptcodes" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Eine Zuordnung von Codenamen zu OID-Code</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scriptcodes</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="nt">haus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4718</span><span class="w"></span>
+<span class="w">   </span><span class="nt">tuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4716</span><span class="w"></span>
+<span class="w">   </span><span class="nt">warning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4717</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Erlaubt dir, im Abschnitt <code class="docutils literal notranslate"><span class="pre">scripts</span></code> und in <code class="docutils literal notranslate"><span class="pre">J</span></code>-Befehlen mit sprechenden Namen
+statt OID-Codes zu arbeiten. Bei der Erstellung der GME-Datei wird in dieser
+Zuordnung nachgeschlagen, welcher OID-Code verwendet werden soll.</p>
+</dd>
+</dl>
+<p>Du kannst sprechende Namen auch ohne <code class="docutils literal notranslate"><span class="pre">scriptcodes</span></code> verwenden, in diesem Fall
+wählt das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die Codes selbst. Damit stets die gleichen Codes verwendet
+werden (und bereits gedruckte Codes weiterhin funktionieren), speichert es die
+Auswahl in einer Datei mit Endung <code class="docutils literal notranslate"><span class="pre">.codes.yaml</span></code>, die nur den
+<code class="docutils literal notranslate"><span class="pre">scriptcodes</span></code>-Eintrag enthält. Es steht dir frei, diese Zuordnung in die
+eigentliche YAML-Datei zu übernehmen.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> arbeitet <em>entweder</em> mit Namen <em>oder</em> mit Nummern. Du kannst
+die beiden Varianten nicht mischen.</p>
+</div>
+</section>
+<section id="replay">
+<h3><code class="docutils literal notranslate"><span class="pre">replay</span></code><a class="headerlink" href="#replay" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Ein OID-Code</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">replay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12159</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Beim Tippen auf diesen Code wird das zuletzt ausgegebene Audio nochmal ausgegeben.</p>
+</dd>
+</dl>
+<p>Auch wenn man diesen dies nicht explizit in der .yaml-Datei notiert, weist das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> einen solchen Code zu, und erzeugt ein <code class="docutils literal notranslate"><span class="pre">REPLAY</span></code>-Muster aus.</p>
+</section>
+<section id="stop">
+<h3><code class="docutils literal notranslate"><span class="pre">stop</span></code><a class="headerlink" href="#stop" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><p>Ein OID-Code</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12158</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Beim Tippen auf diesen Code wird die Ausgabe gestoppt</p>
+</dd>
+</dl>
+<p>Auch wenn man diesen dies nicht explizit in der .yaml-Datei notiert, weist das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> einen solchen Code zu, und erzeugt ein <code class="docutils literal notranslate"><span class="pre">STOP</span></code>-Muster aus.</p>
+</section>
+</section>
+<section id="yaml-programmierung">
+<span id="yaml-skripte"></span><h2>YAML-Programmierung<a class="headerlink" href="#yaml-programmierung" title="Permalink to this heading">¶</a></h2>
+<p>Die Logik einer Tiptoi-Programmierung steckt vor allem in den im <code class="docutils literal notranslate"><span class="pre">scripts</span></code>-Feld angegebenen Skripten. Es gibt zu jedem OID-Code ein Skript. Dieses besteht aus einer oder gegebenenfalls mehreren Zeilen, die wiederum aus Befehlen bestehen.</p>
+<p>Das einfachste Beispiel ist also</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">2000</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(hallo)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Hier wird, wenn du den OID-Code 2000 antippst, der Befehl <code class="docutils literal notranslate"><span class="pre">P(hallo)</span></code> ausgeführt. (Die Befehle selbst werden in Kürze erklärt.)</p>
+<p>Eine Skriptzeile kann mehrere Befehle enthalten, etwa</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">2000</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(hallo) P(freund) J(2001)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Hier werden drei Befehle nacheinander ausgeführt.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Soweit bekannt kann es zu Problemen kommen, wenn <strong>mehr als 8</strong> Befehle in
+einer Zeile stehen. Darüber hinaus interagieren manche Befehle seltsam; mehr
+dazu im Abschnitt „<a class="reference internal" href="#command-j"><span class="std std-ref">J – Sprung</span></a>“.</p>
+</div>
+<p>Im Allgemeinen können zu einem Skript mehrere Zeilen angegeben werden:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">2000</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$offen==1? P(willkommen)</span><span class="w"></span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$offen==0? P(finde_den_schluessel)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Tippst du nun Code 2000 an, wird die erste Zeile ausgeführt, deren Bedingungen alle erfüllt sind (mehr zum Programmieren mit Bedingungen im <a class="reference internal" href="#conditionals"><span class="std std-ref">Abschnitt zu Bedingungsbefehle</span></a>).</p>
+<p>Statt die OID-Codes numerisch anzugeben, kannst du auch sprechende Namen verwenden, siehe Abschnitt „<a class="reference internal" href="#code-namen"><span class="std std-ref">scriptcodes</span></a>“.</p>
+<section id="register">
+<h3>Register<a class="headerlink" href="#register" title="Permalink to this heading">¶</a></h3>
+<p>Viele Befehle manipulieren <span class="target" id="index-0"></span><em>Register</em>. Diese
+repräsentieren Speicherzellen, in denen im Programmverlauf Werte abgelegt und
+abgerufen werden können. Man könnte sie auch Variablen nennen.</p>
+<p>Der Name eines Registers beginnt immer mit einem <cite>$</cite>, gefolgt von Buchstaben,
+Zahlen oder Unterstrichen (<cite>_</cite>). Direkt nach dem <cite>$</cite> muss ein Buchstabe kommen.</p>
+<p>Alle Arithmetik auf dem Tiptoistift arbeitet mit ganzen Zahlen im Bereich 0 bis 65535. Alle Register haben zu Beginn den Wert 0, sofern du es nicht im <code class="docutils literal notranslate"><span class="pre">init</span></code>-Feld anders verlangst (siehe Abschnitt „<a class="reference internal" href="#yaml-init"><span class="std std-ref">init</span></a>“).</p>
+<p>Wenn du eine GME-Datei exportierst (siehe Abschnitt „<a class="reference internal" href="tttool-referenz.html#tttool-export"><span class="std std-ref">GME-Dateien extrahieren</span></a>“), so kennt das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die Namen der Register nicht. In diesem Fall werden Nummern verwendet (<code class="docutils literal notranslate"><span class="pre">$0</span></code>, <code class="docutils literal notranslate"><span class="pre">$1</span></code>…). Es gibt in der Regel keinen Grund, dies in deinen eigenen Tiptoi-Produkten so zu machen.</p>
+</section>
+</section>
+<section id="befehlsreferenz">
+<h2>Befehlsreferenz<a class="headerlink" href="#befehlsreferenz" title="Permalink to this heading">¶</a></h2>
+<p>Im Folgenden werden die Befehle im Einzelnen erklärt: Wie du sie in der YAML-Datei schreibst, was sie bewirken, und was sonst so dabei zu beachten ist.</p>
+<p>In der Format-Beschreibung werden folgende Platzhalter verwendet:</p>
+<ul>
+<li><p><em>audio-datei</em>: Der Name einer Audio-Datei. Aus dem Namen wird, wie im Abschnitt „<a class="reference internal" href="#media-path"><span class="std std-ref">media-path</span></a>“ beschrieben, der Dateiname der Audiodatei abgeleitet.</p></li>
+<li><p><em>oid-code</em>: Die Nummer eines OID-Codes (und damit einer Skiptzeile), wenn <code class="docutils literal notranslate"><span class="pre">scriptcodes</span></code> <em>nicht</em> verwendet wird.</p></li>
+<li><p><em>code-name</em>: Der Name eines OID-Codes (und damit einer Skiptzeile), wenn <code class="docutils literal notranslate"><span class="pre">scriptcodes</span></code> verwendet wird.</p></li>
+<li><p><em>register</em>: Der Name eines Registers, mit <cite>$</cite>. Beispiel: <cite>$mode</cite>.</p></li>
+<li><p><em>argument</em>: Entweder der Name eines Registers oder eine Zahl. Beispiele: <cite>$mode</cite>, <cite>0</cite>, <cite>1024</cite>.</p>
+<blockquote>
+<div><p>Der <em>Wert</em> eines Argumentes ist im ersten Fall der aktuell in dem Register gespeicherte Wert; im zweiten Fall einfach die Zahl selbst.</p>
+</div></blockquote>
+</li>
+</ul>
+<section id="p-audio-abspielen">
+<span id="command-p"></span><h3><code class="docutils literal notranslate"><span class="pre">P</span></code> – Audio abspielen<a class="headerlink" href="#p-audio-abspielen" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>P(</strong><em>audio-datei</em><strong>)</strong></div>
+<div class="line"><strong>P(</strong><em>audio-datei</em><strong>,</strong><em>audio-datei</em><strong>,</strong>…<strong>)</strong></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">haus</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(willkommen) P(zu_hause,daheim)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>In der ersten Form spielt der Befehl die angegebene Audio-Datei ab.</p>
+<p>In der zweiten Form spielt der Befehl zufällig eine der angegebenen Audio-Dateien ab.</p>
+</dd>
+<dt>Hinweis:</dt><dd><p>Wenn der Dateiname Zeichen enthält außer <em>a-z</em>, <em>0-9</em> und <em>_</em>, dann muss der Dateiname in Anführungszeichen stehen.</p>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">haus</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(&quot;Willkommen zu Hause&quot;)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="j-sprung">
+<span id="command-j"></span><h3><code class="docutils literal notranslate"><span class="pre">J</span></code> – Sprung<a class="headerlink" href="#j-sprung" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>J(</strong><em>oid-code</em><strong>)</strong></div>
+<div class="line"><strong>J(</strong><em>code-name</em><strong>)</strong></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">endlos</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(endlose) P(kein_anschluss)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>Der Stift führt, _nach dem aktuellen <a href="#id3"><span class="problematic" id="id4">Skript_</span></a>, das Skript mit Code <em>oid-code</em> bzw. <em>code-name</em> (wenn <a class="reference internal" href="#code-namen"><span class="std std-ref">scriptcodes</span></a> verwendet wird) aus.</p>
+</dd>
+</dl>
+<p>Es sollte nur ein <code class="docutils literal notranslate"><span class="pre">J</span></code>-Befehl pro Zeile existieren (bei mehreren wird der letzte ausgeführt).</p>
+<p>Nach dem <code class="docutils literal notranslate"><span class="pre">J</span></code>-Befehl sollte mindests ein <code class="docutils literal notranslate"><span class="pre">P</span></code>-Befehl stehen, der ein nicht zu kurzes Audio-Schnippsel (mindestens 5ms) abspielt, sonst warten Tiptoi-Stifte (ab der zweiten Generation) beim Sprung etwa zwei Sekunden lang.</p>
+<p>Eine stille, 5ms lange Audiodatei liegt dem <code class="docutils literal notranslate"><span class="pre">tttool</span></code> als <code class="docutils literal notranslate"><span class="pre">example/5ms.ogg</span></code> bei.</p>
+</section>
+<section id="register-setzen">
+<h3><code class="docutils literal notranslate"><span class="pre">:=</span></code> – Register setzen<a class="headerlink" href="#register-setzen" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><em>register1</em> <strong>:=</strong> <em>argument</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$zuletzt := $aktuell  $aktuell := 5</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>Der Wert des Registers <em>register</em> wird auf den Wert des Arguments <em>argument</em> gesetzt.</p>
+</dd>
+</dl>
+</section>
+<section id="arithmetik">
+<h3><code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code>, <code class="docutils literal notranslate"><span class="pre">%=</span></code> – Arithmetik<a class="headerlink" href="#arithmetik" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><em>register</em> <strong>+=</strong> <em>argument</em></div>
+<div class="line"><em>register</em> <strong>-=</strong> <em>argument</em></div>
+<div class="line"><em>register</em> <strong>*=</strong> <em>argument</em></div>
+<div class="line"><em>register</em> <strong>/=</strong> <em>argument</em></div>
+<div class="line"><em>register</em> <strong>%=</strong> <em>argument</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">taste_fuenf</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$anzeige*=10 $anzeige+=5</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">gegner_getroffen</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$wert := 10 $wert *= $bonus $score += $wert</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>Es wird die entsprechende Rechenoperation auf die aktuell in <em>register</em> gespeicherte Zahl und den Wert des Arguments <em>argument</em> angewandt, und das Ergebnis in <em>register1</em> abgelegt.</p>
+</dd>
+</dl>
+<p>Es wird dabei nur mit ganzen Zahlen gerechnet. Insbesondere rundet die Division (<strong>/=</strong>) das Ergebnis stets ab. Wenn also Register <cite>$x</cite> den Wert 8 enthält und <cite>$x/=3</cite> ausgeführt wird, so enthält es den Wert 2.</p>
+<p>Der Befehl <strong>%=</strong> berechnet entsprechend den Divisionsrest. Wenn also Register <cite>$x</cite> den Wert 8 enthält und <cite>$x%=3</cite> ausgeführt wird, so enthält es den Wert 2.</p>
+</section>
+<section id="neg-register-negieren">
+<h3><code class="docutils literal notranslate"><span class="pre">Neg()</span></code> –  Register negieren<a class="headerlink" href="#neg-register-negieren" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>Neg(</strong><em>register</em><strong>)</strong></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Neg($r)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>Der Wert des Registers <em>register</em> wird negiert: Aus 5 wird -5 und umgekehrt.</p>
+</dd>
+</dl>
+</section>
+<section id="bitweise-operatoren">
+<h3><code class="docutils literal notranslate"><span class="pre">&amp;=</span></code>, <code class="docutils literal notranslate"><span class="pre">|=</span></code>, <code class="docutils literal notranslate"><span class="pre">^=</span></code> – bitweise Operatoren<a class="headerlink" href="#bitweise-operatoren" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><em>register</em> <strong>&amp;=</strong> <em>argument</em></div>
+<div class="line"><em>register</em> <strong>|=</strong> <em>argument</em></div>
+<div class="line"><em>register</em> <strong>^=</strong> <em>argument</em></div>
+</div>
+</dd>
+<dt>Zweck:</dt><dd><p>Es wird die entsprechende bitweise Operation auf die aktuell in <em>register</em>
+gespeicherte Zahl und den Wert des Arguments <em>argument</em> angewandt, und das Ergebnis
+in <em>register</em> abgelegt.</p>
+<p>Dabei ist <strong>&amp;=</strong> das bitweise Und, <strong>|=</strong> das bitweise Oder, <strong>^=</strong> das
+bitweise exklusive Oder (XOR). Wenn dir das nichts sagt, brauchst du es
+vermutlich nicht.</p>
+</dd>
+</dl>
+</section>
+<section id="t-timer">
+<h3><code class="docutils literal notranslate"><span class="pre">T</span></code> – Timer<a class="headerlink" href="#t-timer" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>T(</strong><em>register</em><strong>,</strong><em>modulus</em> <strong>)</strong></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">wuerfel</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">T($wurf,6)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>Der Wert des Tiptoi-Zählers zu Beginn des Skriptes wird (modulo dem <em>modulus</em>) im Register <em>register</em> abgelegt.</p>
+</dd>
+</dl>
+<p>Der Tiptoi-Stift verfügt über einen Zähler, der während der Benutzung hochgezählt wird. Er wird schneller hochgezählt, wenn mit dem Stift interagiert wird, er ist also nicht zur Zeitmessung geeignet. Man kann damit aber (einfache) Zufallszahlen bekommen. Mehr dazu im Abschnitt <a class="reference internal" href="tipps-und-tricks.html#zufallszahlen"><span class="std std-ref">Zufallszahlen</span></a>.</p>
+</section>
+<section id="bedingungen">
+<span id="conditionals"></span><h3><code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code> – Bedingungen<a class="headerlink" href="#bedingungen" title="Permalink to this heading">¶</a></h3>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><em>argument1</em> <strong>==</strong> <em>argument2</em></div>
+<div class="line"><em>argument1</em> <strong>&gt;=</strong> <em>argument2</em></div>
+<div class="line"><em>argument1</em> <strong>&lt;=</strong> <em>argument2</em></div>
+<div class="line"><em>argument1</em> <strong>&gt;</strong>  <em>argument2</em></div>
+<div class="line"><em>argument1</em> <strong>&lt;</strong>  <em>argument2</em></div>
+<div class="line"><em>argument1</em> <strong>!=</strong> <em>argument2</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">haus</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$mode == 1? P(willkommen)</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$mode == 2? $gefunden &lt; 3? P(finde_mehr_steine)</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$mode == 2? $gefunden == 3? P(raetsel_geloest)</span><span class="w"></span>
+</pre></div>
+</div>
+</dd>
+<dt>Effekt:</dt><dd><p>Bedingungsbefehle müssen stets am Anfang der Zeile stehen. Es wird der Wert
+des ersten Arguments entsprechend dem Vergleichsoperator mit dem zweiten
+Argument verglichen. Wenn alle Bedingungsbefehle einer Zeile zutreffen, dann
+wird die Zeile ausgeführt, sonst wird die nächste Zeile des Skriptes
+geprüft.</p>
+<p>Die Operatoren sind:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Befehl</p></th>
+<th class="head"><p>Bedeutung</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>==</strong></p></td>
+<td><p>gleich</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>&gt;=</strong></p></td>
+<td><p>größer oder gleich</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>&lt;=</strong></p></td>
+<td><p>kleiner oder gleich</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>&gt;</strong></p></td>
+<td><p>echt größer</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>&lt;</strong></p></td>
+<td><p>echt kleiner</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>!=</strong></p></td>
+<td><p>ungleich</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</section>
+<section id="weitere-befehle">
+<h3>Weitere Befehle<a class="headerlink" href="#weitere-befehle" title="Permalink to this heading">¶</a></h3>
+<p>(Befehle die der normale Tiptoi-Bastler nicht braucht, aber die das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> ausspuckt)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">P*()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PA*()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PA*()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PA()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">G()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?()</span> <span class="pre">()</span></code></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Inhaltsverzeichnis</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">YAML-Referenz</a><ul>
+<li><a class="reference internal" href="#das-yaml-format">Das YAML-Format</a></li>
+<li><a class="reference internal" href="#yaml-datei-felder">YAML-Datei-Felder</a><ul>
+<li><a class="reference internal" href="#product-id"><code class="docutils literal notranslate"><span class="pre">product-id</span></code></a></li>
+<li><a class="reference internal" href="#comment"><code class="docutils literal notranslate"><span class="pre">comment</span></code></a></li>
+<li><a class="reference internal" href="#welcome"><code class="docutils literal notranslate"><span class="pre">welcome</span></code></a></li>
+<li><a class="reference internal" href="#media-path"><code class="docutils literal notranslate"><span class="pre">media-path</span></code></a></li>
+<li><a class="reference internal" href="#gme-lang"><code class="docutils literal notranslate"><span class="pre">gme-lang</span></code></a></li>
+<li><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
+<li><a class="reference internal" href="#scripts"><code class="docutils literal notranslate"><span class="pre">scripts</span></code></a></li>
+<li><a class="reference internal" href="#language"><code class="docutils literal notranslate"><span class="pre">language</span></code></a></li>
+<li><a class="reference internal" href="#speak"><code class="docutils literal notranslate"><span class="pre">speak</span></code></a></li>
+<li><a class="reference internal" href="#scriptcodes"><code class="docutils literal notranslate"><span class="pre">scriptcodes</span></code></a></li>
+<li><a class="reference internal" href="#replay"><code class="docutils literal notranslate"><span class="pre">replay</span></code></a></li>
+<li><a class="reference internal" href="#stop"><code class="docutils literal notranslate"><span class="pre">stop</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#yaml-programmierung">YAML-Programmierung</a><ul>
+<li><a class="reference internal" href="#register">Register</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#befehlsreferenz">Befehlsreferenz</a><ul>
+<li><a class="reference internal" href="#p-audio-abspielen"><code class="docutils literal notranslate"><span class="pre">P</span></code> – Audio abspielen</a></li>
+<li><a class="reference internal" href="#j-sprung"><code class="docutils literal notranslate"><span class="pre">J</span></code> – Sprung</a></li>
+<li><a class="reference internal" href="#register-setzen"><code class="docutils literal notranslate"><span class="pre">:=</span></code> – Register setzen</a></li>
+<li><a class="reference internal" href="#arithmetik"><code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code>, <code class="docutils literal notranslate"><span class="pre">%=</span></code> – Arithmetik</a></li>
+<li><a class="reference internal" href="#neg-register-negieren"><code class="docutils literal notranslate"><span class="pre">Neg()</span></code> –  Register negieren</a></li>
+<li><a class="reference internal" href="#bitweise-operatoren"><code class="docutils literal notranslate"><span class="pre">&amp;=</span></code>, <code class="docutils literal notranslate"><span class="pre">|=</span></code>, <code class="docutils literal notranslate"><span class="pre">^=</span></code> – bitweise Operatoren</a></li>
+<li><a class="reference internal" href="#t-timer"><code class="docutils literal notranslate"><span class="pre">T</span></code> – Timer</a></li>
+<li><a class="reference internal" href="#bedingungen"><code class="docutils literal notranslate"><span class="pre">==</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">!=</span></code> – Bedingungen</a></li>
+<li><a class="reference internal" href="#weitere-befehle">Weitere Befehle</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Vorheriges Thema</h4>
+    <p class="topless"><a href="tttool-referenz.html"
+                          title="vorheriges Kapitel">Die <code class="docutils literal notranslate"><span class="pre">tttool</span></code>-Befehle</a></p>
+  </div>
+  <div>
+    <h4>Nächstes Thema</h4>
+    <p class="topless"><a href="tipps-und-tricks.html"
+                          title="nächstes Kapitel">Tipps und Tricks</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Diese Seite</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/yaml-referenz.rst.txt"
+            rel="nofollow">Quellcode anzeigen</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             >Index</a></li>
+        <li class="right" >
+          <a href="tipps-und-tricks.html" title="Tipps und Tricks"
+             >weiter</a> |</li>
+        <li class="right" >
+          <a href="tttool-referenz.html" title="Die tttool-Befehle"
+             >zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">YAML-Referenz</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 1980, Joachim Breitner.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Erste Schritte &#8212; Das tttool-Buch 1.11 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Vorwort" href="vorwort.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="vorwort.html" title="Vorwort"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Erste Schritte</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="erste-schritte">
+<span id="id1"></span><h1>Erste Schritte<a class="headerlink" href="#erste-schritte" title="Permalink to this heading">¶</a></h1>
+<p>Dieses Kapitel erklärt dir Schritt für Schritt und an einfachen Beispielen, was du mit dem <cite>tttool</cite> anstellen kannst. Die Details werden dann vollständig in den nächsten Kapiteln erklärt.</p>
+<section id="vorbereitung">
+<h2>Vorbereitung<a class="headerlink" href="#vorbereitung" title="Permalink to this heading">¶</a></h2>
+<p>Auf der
+<a class="reference external" href="https://github.com/entropia/tip-toi-reveng/releases">Release-Seite</a> findest du eine Zip-Datei, die du herunterlädst und entpackst. Du findest darin die Datei <code class="docutils literal notranslate"><span class="pre">tttool.exe</span></code> (für Windows) oder <code class="docutils literal notranslate"><span class="pre">tttool</span></code> (für Linux und OSX), die man direkt ausführen kann. Es ist keine weitere Installation nötig.</p>
+<p>Allerdings ist zu beachten, dass es sich dabei um ein
+Kommandozeilenprogramm handelt. Doppelt klicken bringt also nichts,
+sondern du musst die Eingabeaufforderung starten, in das Verzeichnis mit der Datei
+<code class="docutils literal notranslate"><span class="pre">tttool.exe</span></code> wechseln und dann Befehle wie
+<code class="docutils literal notranslate"><span class="pre">./tttool</span> <span class="pre">info</span> <span class="pre">WWW_Bauernhof.gme</span></code> eintippen.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Ein vorangestelltes <code class="docutils literal notranslate"><span class="pre">$</span></code>
+in folgenden Listings wird nicht mit eingegeben, sondern markiert die
+Zeilen, die einzugeben sind. Wenn dir das neu ist, dann sei dir das Kapitel
+<a class="reference external" href="https://tutorial.djangogirls.org/de/intro_to_command_line/">Einführung in die Kommandozeile</a> eines Python-Kurses empfohlen.</p>
+</div>
+</section>
+<section id="tone-in-tiptoi-buchern-andern">
+<h2>Töne in Tiptoi-Büchern ändern<a class="headerlink" href="#tone-in-tiptoi-buchern-andern" title="Permalink to this heading">¶</a></h2>
+<p>Als erstes einfaches Projekt kannst du in einem deiner Tiptoi-Bücher ein paar Töne ändern. Überrasche dein Kind doch, indem du deine eigene Stimme ertönen lässt! Als Beispiel nehmen wir das Buch „Wieso? Weshalb? Warum? – Bauernhof“, aber du kannst diese Anleitung auch mit einem anderen Buch verfolgen.</p>
+<p>Zu jedem Tiptoi-Produkt gehört eine „GME-Datei“, die sowohl die Töne als auch die Programmlogik enthält – in unserem Fall <code class="docutils literal notranslate"><span class="pre">WWW_Bauernhof.gme</span></code>. Du findest sie auf dem Tiptoi-Stift selbst, oder auf der <a class="reference external" href="https://www.ravensburger.de/entdecken/ravensburger-marken/tiptoi/tiptoi-service-faq/fragen-zum-haendischen-download/index.html">Ravensburger Download-Seite</a>. Kopiere Sie in den Ordner mit dem <code class="docutils literal notranslate"><span class="pre">tttool.exe</span></code>.</p>
+<p>Führe nun die folgenden beiden Befehle aus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool <span class="nb">export</span> WWW_Bauernhof.gme
+$ ./tttool media WWW_Bauernhof.gme
+</pre></div>
+</div>
+<p>Du solltest nun in diesem Verzeichnis eine Datei <code class="docutils literal notranslate"><span class="pre">WWW_Bauernhof.yaml</span></code> finden (die du  vorerst ignorierst), sowie ein Verzeichnis <code class="docutils literal notranslate"><span class="pre">media/</span></code> mit vielen Audio-Dateien im <code class="docutils literal notranslate"><span class="pre">ogg</span></code>-Format finden. Hör einfach mal rein!</p>
+<p>Damit bist du schon halb fertig. Suche die Audio-Datei, die du ersetzen willst und merke dir den Dateinamen – zum Beispiel <code class="docutils literal notranslate"><span class="pre">WWW_Bauernhof_3.ogg</span></code> für die Frage „Was ist das besondere an dem Kuhstall“.  Du kannst die Datei ruhig löschen, denn du willst sie durch deine eigene Aufnahme ersetzen.</p>
+<p>Zu erklären, wie du eine Audiodatei aufnimmst würde hier den Rahmen sprengen. Wichtig ist vor allem, dass du die Datei im OGG- oder MP3-Format aufnimmst. Speichere sie in dem <code class="docutils literal notranslate"><span class="pre">audio</span></code>-Verzeichnis als <code class="docutils literal notranslate"><span class="pre">WWW_Bauernhof_3.ogg</span></code>.</p>
+<p>Nun musst du die GME-Datei wieder zusammenbauen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool assemble WWW_Bauernhof.yaml Mein_Bauernhof.gme
+</pre></div>
+</div>
+<p>Nun solltest du in dem Verzeichnis die Datei <code class="docutils literal notranslate"><span class="pre">Mein_Bauernhof.gme</span></code> finden. Kopiere diese Datei auf den Tiptoi-Stift. Es darf immer nur eine GME-Datei pro Produkt auf dem Stift sein, also musst du die originale <code class="docutils literal notranslate"><span class="pre">WWW_Bauernhof.gme</span></code> löschen – natürlich nur nachdem du eine Sicherheitskopie davon auf deinem Rechner erstellt hast.</p>
+<p>Das war es schon! Wenn du nun den Stift einschaltest, den Bauernhof aktivierst und auf den Kuhstall tippst, solltest du deine eigene Stimme hören.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Da wir das Dateiformat nicht vollständig verstanden haben, kann es sein, dass manche Elemente – insbesondere Spiele – nun nicht mehr funktionieren.</p>
+</div>
+</section>
+<section id="eigene-tiptoi-produkte-herstellen">
+<h2>Eigene Tiptoi-Produkte herstellen<a class="headerlink" href="#eigene-tiptoi-produkte-herstellen" title="Permalink to this heading">¶</a></h2>
+<p>Als nächstes wirst du ein komplett eigenes Tiptoi-Projekt herstellen. Als kleines Beispiel nehmen wir hier ein Tic-Tac-Toe-Spiel – das braucht nur wenige aktive Bereiche und ist grafisch simpel, aber zeigt schon, wie du komplexere Abläufe programmierst.</p>
+<p>Für ein Tiptoi-Produkt brauchst du zwei Komponenten:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>die GME-Datei mit der Programmierung und den Audio-Dateien, und</p></li>
+<li><p>das Buch (hier, das Blatt Papier) mit der Grafik und den Codes.</p></li>
+</ul>
+</div></blockquote>
+<p>Bei beidem hilft das <code class="docutils literal notranslate"><span class="pre">tttool</span></code>, und in beiden ist der Ausgangspunkt die sogenannte YAML-Datei.</p>
+<section id="der-erste-ton">
+<h3>Der erste Ton<a class="headerlink" href="#der-erste-ton" title="Permalink to this heading">¶</a></h3>
+<p>Du beginnst also mit einer einfachen YAML-Datei. Öffne den Texteditor deiner Wahl, schreibe folgendes und speichere es als <code class="docutils literal notranslate"><span class="pre">tic-tac-toi.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">product-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">900</span><span class="w"></span>
+<span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tic-Tac-Toe fuer den Tiptoi</span><span class="w"></span>
+<span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldOL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P(oben_links)</span><span class="w"></span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://de.wikipedia.org/wiki/YAML">YAML</a> ist ein generisches Datenformat,
+das du mit einem beliebigen Texteditor erstellen und bearbeiten kannst. Beachte
+dabei dass in YAML Einrückungen, also Leerzeichen am Anfang der Zeile, wichtig
+sind. Beachte auch, dass die Dateiendung <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> lautet, und nicht <code class="docutils literal notranslate"><span class="pre">.yml</span></code>.</p>
+<p>Die einzig wichtigen Felder sind <code class="docutils literal notranslate"><span class="pre">product-id</span></code> und <code class="docutils literal notranslate"><span class="pre">scripts</span></code>. Die <code class="docutils literal notranslate"><span class="pre">product-id</span></code>
+ist eine Nummer, die dein Projekt indentifiziert, und mit der am Ende der Stift
+die passende GME-Datei zum ausgewählten Buch findet. Das <code class="docutils literal notranslate"><span class="pre">comment</span></code>-Feld hat
+keine weitere Bedeutung. Wirklich spannend ist das <code class="docutils literal notranslate"><span class="pre">scripts</span></code>-Feld: Hier wird
+festgelegt, dass es ein Feld namens “<code class="docutils literal notranslate"><span class="pre">feldOl</span></code>” geben wird, und wenn der
+Benutzer mit dem Stift drauf geht, soll die Audiodatei namens
+<code class="docutils literal notranslate"><span class="pre">oben_links</span></code> abgespielt werden.</p>
+<p>Diese Audiodatei muss nun irgendwo herkommen. Du kannst sie selber aufnehmen
+und als <code class="docutils literal notranslate"><span class="pre">oben_links.ogg</span></code> abspeichern, und am Ende wirst du das sicher machen
+wollen. Aber gerade während du dein Tiptoi-Produkt noch entwickelst, oder für
+schnelle Experimente, ist das sehr hinderlich.</p>
+<p>Daher kann das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> auch selbst die Ansagen erstellen, mittels
+Text-To-Speech <a class="footnote-reference brackets" href="#id3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.  Füge dazu folgende Zeilen der Datei hinzu:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span><span class="w"></span>
+<span class="nt">speak</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">oben_links</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Du</span><span class="nv"> </span><span class="s">hast</span><span class="nv"> </span><span class="s">oben</span><span class="nv"> </span><span class="s">links</span><span class="nv"> </span><span class="s">hingetippt&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Damit ist die YAML-Datei schon brauchbar! Mit dem Befehl</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool assemble tic-tac-toi.yaml
+</pre></div>
+</div>
+<p>wird dir eine Datei namens <code class="docutils literal notranslate"><span class="pre">tic-tac-tiptoi.gme</span></code> erstellt, die du auf den
+Stift kopierst.</p>
+<p>Nun brauchst du noch den zugehörigen Ausdruck mit den Punktmustern. Auch hier musst du dich noch nicht gleich an die fertige Gestaltung machen: Mit dem Befehl</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool oid-table tic-tac-toi.yaml
+</pre></div>
+</div>
+<p>erstellt dir das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die Datei <code class="docutils literal notranslate"><span class="pre">tic-tac-tiptoi.pdf</span></code>, die alle
+Punktmuster für dein Werk in einer nüchternen, aber praktischen Tabelle
+enthält. Du siehst dort neben dem Feld für <code class="docutils literal notranslate"><span class="pre">feldOL</span></code> auch eines mit der Beschriftung <code class="docutils literal notranslate"><span class="pre">START</span></code>, dem Anschaltzeichen für dein Produkt, sowie <code class="docutils literal notranslate"><span class="pre">REPLAY</span></code> und <code class="docutils literal notranslate"><span class="pre">STOP</span></code>, die man erstmal ignorieren darf.</p>
+<p>Wenn du diese Datei nun ausdruckst, mit dem Stift auf das Anschaltzeichen gehst, und danach auf das andere Feld, solltest du eine Roboterstimme hören, die „Du hast oben links hingetippt.“ sagt.</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Das Drucken ist die hakeligste Sache an der ganzen Bastelei. Mit
+manchen Druckern klappt es auf Anhieb, mit anderen muss man lange mit den
+Druckeinstellungen herumspielen, oder die Punktmuster deutlich fetter
+auftragen, bei anderen ist gar nichts zu machen. Vielleicht hilft dir die
+<a class="reference external" href="https://github.com/entropia/tip-toi-reveng/wiki/Printing">Seite zum Thema Drucken</a> auf dem
+Tiptoi-Wiki weiter, wenn es nicht gleich klappt.</p>
+</div>
+</section>
+<section id="spiellogik-programmieren">
+<h3>Spiellogik programmieren<a class="headerlink" href="#spiellogik-programmieren" title="Permalink to this heading">¶</a></h3>
+<p>Nun füllst du das Spielfeld mit Leben. Dazu musst du dir überlegen, was sich das Programm „merken“ muss.</p>
+<p>Für das Feld oben links muss es sich zum Beispiel merken, ob es leer ist, von Spieler 1 (Kreuz) belegt oder von Spieler 2 (Kreis) belegt ist. Dazu verwendest du das Register <code class="docutils literal notranslate"><span class="pre">$OL</span></code>, was entsprechend die Werte 0, 1 oder 2 speichert. Wir sprechen hier von Registern, aber man kann genau so gut Variablen oder Speicherplätze sagen.</p>
+<p>Wenn ein Spieler nun <code class="docutils literal notranslate"><span class="pre">feldOL</span></code> antippt, und es ist schon belegt, so möchtest du ihn wissen lassen, was hier schon ist. Ist es allerdings frei, so musst du <code class="docutils literal notranslate"><span class="pre">$OL</span></code> entsprechend ändern. Dazu musst du natürlich wissen, wer dran ist! Das speicherst du im Register <code class="docutils literal notranslate"><span class="pre">$turn</span></code>, mit den Werten 1 und 2.</p>
+<p>Insgesamt hast du also drei Fälle, die du wie folgt aufschreibst:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldOL</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == 0? $OL := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == 2? P(here_circle) J(next)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Wenn der Benutzer nun das Feld antippt, prüft der Stift die drei Zeilen der Reihe nach, und führt die erste aus, wo alle Bedingungen passen. Bedingungen erkennnst du an dem Fragezeigen: Hier prüfst du, welcher Wert in <code class="docutils literal notranslate"><span class="pre">$OL</span></code> gespeichert ist. Den <code class="docutils literal notranslate"><span class="pre">P(…)</span></code>-Befehl kennst du schon, der gibt eine Audiodatei aus (und um die eigentliche Audiodateien kümmerst du dich später). Mit <code class="docutils literal notranslate"><span class="pre">$OL</span> <span class="pre">:=</span> <span class="pre">$turn</span></code> wird die Nummer des aktuellen Spielers (laut <code class="docutils literal notranslate"><span class="pre">$turn</span></code>) in das Feld geschrieben (<code class="docutils literal notranslate"><span class="pre">$OL</span></code>).</p>
+<p>In allen drei Fällen willst du allerdings noch mehr machen: Wenn ein neues Feld belegt wurde, willst du den Stift das sagen lassen. Und wenn nicht, willst du zumindest sagen, wer nun dran ist. Da das bei allen Feldern der gleiche Code sein wird, programmierst du ihn im Folgenden nur einmal, und springst den Code mit dem <code class="docutils literal notranslate"><span class="pre">J</span></code>-Befehl (für „Jump“) an.</p>
+<p>Um zum Beispiel zu verkünden, wer eigentlich gerade dran ist, füge das folgende Skript hinzu, das du oben mit <code class="docutils literal notranslate"><span class="pre">J(next)</span></code> anspringst:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">…</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">next</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? P(player1)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? P(player2)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Wie bereits erwähnt willst du dem Spieler auch sagen, wenn ein neues Kreuz oder ein neuer Kreis gesetzt wird. Das machst du im Skript <code class="docutils literal notranslate"><span class="pre">here_now</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">…</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">here_now</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? $set += 1 P(here_now_cross) J(win_check)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? $set += 1 P(here_now_circle) J(win_check)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Wie auch im vorherigen Skript prüfst du zuerst, wer gerade dran ist, um dann die entsprechende Meldung mittels <code class="docutils literal notranslate"><span class="pre">P(…)</span></code> auszugeben. Du zählst an der Stelle im Register <code class="docutils literal notranslate"><span class="pre">$set</span></code> mit, wie viele Felder insgesamt besetzt sind – das wird in Kürze nützlich sein. In beiden Fällen machst du anschließend mit <code class="docutils literal notranslate"><span class="pre">win_check</span></code> weiter, dem kompliziertesten Skript bisher, in dem du prüfst ob der aktuelle Spieler vielleicht gewonnen hat:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">…</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">win_check</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == $turn? $ML == $turn? $UL == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OM == $turn? $MM == $turn? $UM == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == $turn? $MR == $turn? $UR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == $turn? $OM == $turn? $OR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$ML == $turn? $MM == $turn? $MR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL == $turn? $UM == $turn? $UR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == $turn? $MM == $turn? $UR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == $turn? $MM == $turn? $UL == $turn? J(win)</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$set == 9? P(draw) J(reset)</span><span class="w"></span>
+
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? $turn := 2 J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? $turn := 1 J(next)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Zuerst gehst du alle acht Gewinn-Kombinationen, also die drei Spalten, die drei Zeilen und die zwei Diagonale, durch und prüfst, ob alle drei Felder dem aktuellem Spieler gehören. Wenn ja, dann hat er gewonnen! (Und der Stift macht mit dem Skript <code class="docutils literal notranslate"><span class="pre">win</span></code> weiter.)</p>
+<p>Wenn der aktuelle Spieler nicht gewonnen hat, schaust du, ob trotzdem das Feld voll ist. Das erkennst du daran, dass das Register <code class="docutils literal notranslate"><span class="pre">$set</span></code>, das mitzählt, wie viele Felder belegt sind, den Wert 9 hat. Wenn ja, dann lässt du verlautbaren, dass das Spiel unentschieden endete, und beginnst von vorne.</p>
+<p>Und sollte auch das nicht passiert sein, so änderst du aktuellen Spieler (und sagst wer jetzt dran ist, siehe oben).</p>
+<p>Jetzt bist du fast fertig. Wenn der aktuelle Spieler gewinnt, dann willst du das verkünden, und das Spiel neu starten, mit dem Verlierer als neuen Startspieler:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">…</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">win</span><span class="p p-Indicator">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? P(player1wins) $turn := 2 J(reset)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? P(player2wins) $turn := 1 J(reset)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Und wenn du das Spiel neu startest, musst du alle Felder leeren:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">…</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">reset</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$set:=0 $OL:=0 $OM:=0 $OR:=0 $ML:=0 $MM:=0 $MR:=0 J(reset2)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">reset2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL:=0 $UM:=0 $UR:=0 J(next)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Du machst das mit zwei Skripten, weil der Tiptoi-Stift es nicht immer mag, wenn mehr als 8 Befehle in einem Skript sind. Das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> würde dich allerdings warnen, falls du das mal vergisst.</p>
+<p>Natürlich musst du für alle 9 Felder ein Program wie <code class="docutils literal notranslate"><span class="pre">feldOL</span></code> schreiben, aber die sehen genau so aus wie jenes, nur statt <code class="docutils literal notranslate"><span class="pre">OL</span></code> steht dann da <code class="docutils literal notranslate"><span class="pre">OM</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code>, <code class="docutils literal notranslate"><span class="pre">ML</span></code>, und so weiter. Das ist ein wenig repetitiv, aber da kommst du nicht ohne Weiteres drum rum.</p>
+<p>Nun bist du fast fertig mit der Programmierung. Es fehlt nur noch ein Detail: Du musst
+sicherstellen, dass ganz am Anfang alle Register einen vernünftigen Wert haben. Wenn du nichts machst, sind die Register anfangs alle auf 0, was für die Felder und <code class="docutils literal notranslate"><span class="pre">$set</span></code> durchaus passt. Aber der aktuelle Spieler, <code class="docutils literal notranslate"><span class="pre">$turn</span></code>, muss ja stets 1 oder 2 sein. Deshaben gibst du ein Init-Skript an.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn := 1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Die Init-Zeile darf nur Zuweisungen enthalten, aber du kannst trotzdem beim Anschalten auch Audio-Dateien abspielen. Dazu schreibst du sie in die <code class="docutils literal notranslate"><span class="pre">welcome</span></code>-Zeile:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn := 1</span><span class="w"></span>
+<span class="nt">welcome</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">welcome, player1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sowohl <code class="docutils literal notranslate"><span class="pre">init</span></code> als auch <code class="docutils literal notranslate"><span class="pre">welcome</span></code> gehören übrigens in die erste Spalte, und nicht etwa unterhalb von <code class="docutils literal notranslate"><span class="pre">skripts:</span></code> eingerückt.</p>
+<p>Wenn du jetzt noch den <code class="docutils literal notranslate"><span class="pre">speak</span></code>-Abschnitt vervollständigst, so ist die YAML-Datei endlich fertig. Hier nochmal in voller Länge und am Stück:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">product-id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">900</span><span class="w"></span>
+<span class="nt">comment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Tic Tac Toe for the Tiptoi</span><span class="w"></span>
+<span class="nt">init</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn := 1</span><span class="w"></span>
+<span class="nt">welcome</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">welcome, player1</span><span class="w"></span>
+<span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">de</span><span class="w"></span>
+
+<span class="nt">scripts</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldOL</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == 0? $OL := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldOM</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OM == 0? $OM := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OM == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OM == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldOR</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == 0? $OR := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldML</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$ML == 0? $ML := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$ML == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$ML == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldMM</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MM == 0? $MM := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MM == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MM == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldMR</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MR == 0? $MR := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MR == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$MR == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldUL</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL == 0? $UL := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldUM</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UM == 0? $UM := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UM == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UM == 2? P(here_circle) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">feldUR</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UR == 0? $UR := $turn J(here_now)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UR == 1? P(here_cross) J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UR == 2? P(here_circle) J(next)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">here_now</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? $set += 1 P(here_now_cross) J(win_check)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? $set += 1 P(here_now_circle) J(win_check)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">win_check</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == $turn? $ML == $turn? $UL == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OM == $turn? $MM == $turn? $UM == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == $turn? $MR == $turn? $UR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == $turn? $OM == $turn? $OR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$ML == $turn? $MM == $turn? $MR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL == $turn? $UM == $turn? $UR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OL == $turn? $MM == $turn? $UR == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$OR == $turn? $MM == $turn? $UL == $turn? J(win)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$set == 9? P(draw) J(reset)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? $turn := 2 J(next)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? $turn := 1 J(next)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">win</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? P(player1wins) $turn := 2 J(reset)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? P(player2wins) $turn := 1 J(reset)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">reset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$set:=0 $OL:=0 $OM:=0 $OR:=0 $ML:=0 $MM:=0 $MR:=0 J(reset2)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">reset2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$UL:=0 $UM:=0 $UR:=0 J(next)</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">next</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 1? P(player1)</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$turn == 2? P(player2)</span><span class="w"></span>
+
+<span class="nt">speak</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">welcome</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Willkommen</span><span class="nv"> </span><span class="s">bei</span><span class="nv"> </span><span class="s">Tic-Tac-Tiptoi.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">player1</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Kreuz</span><span class="nv"> </span><span class="s">ist</span><span class="nv"> </span><span class="s">dran.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">player2</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Kreis</span><span class="nv"> </span><span class="s">ist</span><span class="nv"> </span><span class="s">dran.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">here_cross</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hier</span><span class="nv"> </span><span class="s">ist</span><span class="nv"> </span><span class="s">schon</span><span class="nv"> </span><span class="s">ein</span><span class="nv"> </span><span class="s">Kreuz&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">here_circle</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hier</span><span class="nv"> </span><span class="s">ist</span><span class="nv"> </span><span class="s">schon</span><span class="nv"> </span><span class="s">ein</span><span class="nv"> </span><span class="s">Kreis&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">here_now_cross</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hier</span><span class="nv"> </span><span class="s">ist</span><span class="nv"> </span><span class="s">jetzt</span><span class="nv"> </span><span class="s">ein</span><span class="nv"> </span><span class="s">Kreuz&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">here_now_circle</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Hier</span><span class="nv"> </span><span class="s">ist</span><span class="nv"> </span><span class="s">jetzt</span><span class="nv"> </span><span class="s">ein</span><span class="nv"> </span><span class="s">Kreis&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">player1wins</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Kreuz</span><span class="nv"> </span><span class="s">gewinnt.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">player2wins</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Kreis</span><span class="nv"> </span><span class="s">gewinnt.&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">draw</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Unentschieden&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="die-programmierung-testen">
+<h3>Die Programmierung testen<a class="headerlink" href="#die-programmierung-testen" title="Permalink to this heading">¶</a></h3>
+<p>Natürlich schreibst du so ein Programm nicht von oben bis unten runter, sondern in kleinen Stücken, die du dann zwischendurch testest.</p>
+<p>Eine Möglichkeit ist natürlich, mittels</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool oid-table tic-tac-toi.yaml
+$ ./tttool assemble tic-tac-toi.yaml
+</pre></div>
+</div>
+<p>eine neue OID-Tabelle und eine neu GME-Datei zu erzeugen, diese zu drucken bzw. auf den Stift zu kopieren, und dann mit der echten Hardware zu testen.</p>
+<p>Doch auch wenn man die Tabelle nur dann ausdrucken muss, wenn man neue Felder hinzugefügt hat, ist das relativ nervig. Daher bietet das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> ein Simulations-Modus, wo du eintippst, welches Feld man antippt, und es spielt dann die entsprechenden Audio-Dateien ab (Lautsprecher anschalten!):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool play tic-tac-toi.yaml
+Initial state <span class="o">(</span>not showing zero registers<span class="o">)</span>: <span class="nv">$0</span><span class="o">=</span><span class="m">0</span> <span class="nv">$10</span><span class="o">=</span><span class="m">1</span>
+Playing audio sample <span class="m">9</span>
+Playing audio sample <span class="m">5</span>
+Next OID touched? feldOL
+Executing:  <span class="nv">$3</span><span class="o">==</span><span class="m">0</span>? <span class="nv">$3</span>:<span class="o">=</span><span class="nv">$10</span> J<span class="o">(</span><span class="m">11263</span><span class="o">)</span>
+Executing:  <span class="nv">$10</span><span class="o">==</span><span class="m">1</span>? <span class="nv">$9</span>+<span class="o">=</span><span class="m">1</span> P<span class="o">(</span><span class="m">4</span><span class="o">)</span> J<span class="o">(</span><span class="m">11267</span><span class="o">)</span>
+Playing audio sample <span class="m">4</span>
+Executing:  <span class="nv">$10</span><span class="o">==</span><span class="m">1</span>? <span class="nv">$10</span>:<span class="o">=</span><span class="m">2</span> J<span class="o">(</span><span class="m">11264</span><span class="o">)</span>
+Executing:  <span class="nv">$10</span><span class="o">==</span><span class="m">2</span>? P<span class="o">(</span><span class="m">7</span><span class="o">)</span>
+Playing audio sample <span class="m">7</span>
+State now: <span class="nv">$0</span><span class="o">=</span><span class="m">0</span> <span class="nv">$3</span><span class="o">=</span><span class="m">1</span> <span class="nv">$9</span><span class="o">=</span><span class="m">1</span> <span class="nv">$10</span><span class="o">=</span><span class="m">2</span>
+Next OID touched?
+</pre></div>
+</div>
+<p>So kannst du relativ schnell testen ob der neue Code funktioniert.</p>
+</section>
+<section id="das-spielbrett-gestalten">
+<h3>Das Spielbrett gestalten<a class="headerlink" href="#das-spielbrett-gestalten" title="Permalink to this heading">¶</a></h3>
+<p>Damit ist die Programmierung des Tic-Tac-Toe-Spiels abgeschlossen, und du kannst dich an die grafische Gestaltung machen.</p>
+<p>Eine sehr einfache Möglichkeit ist es, die Tabelle mit den Mustern, die du schon mit <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-table</span></code> erstellt hast, zu zerschneiden und die Muster auf ein konventionell gebasteltes Spielbrett zu kleben.</p>
+<p>Aber du kannst natürlich auch am Rechner das Spielbrett gestalten, zum Beispiel mit einem Bildverarbeitungsprogramm wie dem kostenlosen <a class="reference external" href="https://www.gimp.org/">Gimp</a>. Wenn du ein anderes Programm verwendest, musst du die Anleitung ensprechend anpassen.</p>
+<p>Im Gimp legst du ein neues Bild an, und achtest hierbei, dass es in der richtigen Auflösung erstellt wird: Unter „Erweiterte Einstellungen“ setzt du die X- und Y-Auflösung auf 1200dpi:</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="_images/gimp-new-image.png"><img alt="Ein neues Projekt mit Gimp anlegen" src="_images/gimp-new-image.png" style="width: 349.0px; height: 377.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ein neues Projekt mit Gimp anlegen</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<p>Nun malst du nach Herzenslust das Spielbrett auf das Bild. Vermeide allerdings die Bereiche, die der Spieler nachher antippen soll, all zu dunkel zu gestalten. Bevor du weißt was dein Drucker so kann, lasse sie einfach erstmal weiß.</p>
+<p>Wenn du zufrieden bist, gilt es, die Punktmuster über das Bild zu legen. Dazu erzeugst du erstmal eine PNG-Datei pro Muster:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool oid-codes tic-tac-toi.yaml
+</pre></div>
+</div>
+<p>Du solltest jetzt im aktuellen Verzeichnis Dateien <code class="docutils literal notranslate"><span class="pre">oid-900-feldML.png</span></code>, <code class="docutils literal notranslate"><span class="pre">oid-900-feldMM.png</span></code> und so weiter finden. Die Muster für die Felder und das START-Muster lädst du über „Datei → Als Ebenen öffnen …“ in Gimp. Sie tauchen jetzt links in der Ebenenansicht auf.</p>
+<p>Wenn die Auflösung des Dokuments stimmt, sollten sie 3×3cm groß sein. Schiebe sie über die entsprechenden Stellen, und wenn sie zu groß sind, dann schneide sie zu, oder arbeite mit <a class="reference external" href="https://docs.gimp.org/de/gimp-dialogs-structure.html#gimp-layer-mask">Ebenenmasken</a>.</p>
+<p>Wichtig ist, dass du die Muster nie skalierst, sonst können sie nicht mehr erkannt werden! Wenn du größere Muster brauchst, dann kopiere sie mehrfach, oder erzeuge gleich größere Muster, etwa mittels</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./tttool --code-dim 100x100 oid-codes tic-tac-toi.yaml
+</pre></div>
+</div>
+<p>für 10×10cm.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="_images/gimp-tic-tac-tiptoi.png"><img alt="Tic-Tac-Tiptoi" src="_images/gimp-tic-tac-tiptoi.png" style="width: 702.0px; height: 411.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Ein etwas lieblos gestaltetes Tic-Tac-Tiptoi</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<p>Nun druckst du das Bild direkt aus Gimp heraus aus, und achtest bei den Druckereinstellungen, dass es nicht skaliert wird (also nicht etwa „auf den Druckbereich anpassen“ auswählen“). Wenn die Druckergötter gnädig gestimmt sind, hälst du nun dein erstes selbst-gebautes Tiptoi-Spiel in der Hand!</p>
+</section>
+<section id="und-jetzt">
+<h3>Und jetzt?<a class="headerlink" href="#und-jetzt" title="Permalink to this heading">¶</a></h3>
+<p>Tic-Tac-Toe funktionert, und du hast Lust auf mehr? Dann lass dich doch auf der <a class="reference external" href="http://tttool.entropia.de/">Galerie</a> inspirieren, und lese in den nächsten Seiten, um einen Überblick darüber zu gewinne, wie der Tiptoi-Stift funktioniert, was das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> so alles kann, wie die YAML-Datei aufgebaut ist und was andere so alles an Tipps und Tricks für dich zusammen getragen haben.</p>
+<p>Wenn du mal nicht weiterkommst, dann darfst du dich gerne an die <a class="reference external" href="https://lists.nomeata.de/mailman/listinfo/tiptoi">Tiptoi-Mailingliste</a> wenden. Und wenn du etwas schönes Gebastelt hast, freuen wir uns immer wenn du uns auf der Mailingliste davon erzählst.</p>
+<p>Viel Vergnügen!</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>Für Windows bringt das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die nötigen Programme mit, auf anderen
+Systemen wird dich das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> gegebenenfalls bitten, weitere Pakete zu
+installieren.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Inhaltsverzeichnis</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Erste Schritte</a><ul>
+<li><a class="reference internal" href="#vorbereitung">Vorbereitung</a></li>
+<li><a class="reference internal" href="#tone-in-tiptoi-buchern-andern">Töne in Tiptoi-Büchern ändern</a></li>
+<li><a class="reference internal" href="#eigene-tiptoi-produkte-herstellen">Eigene Tiptoi-Produkte herstellen</a><ul>
+<li><a class="reference internal" href="#der-erste-ton">Der erste Ton</a></li>
+<li><a class="reference internal" href="#spiellogik-programmieren">Spiellogik programmieren</a></li>
+<li><a class="reference internal" href="#die-programmierung-testen">Die Programmierung testen</a></li>
+<li><a class="reference internal" href="#das-spielbrett-gestalten">Das Spielbrett gestalten</a></li>
+<li><a class="reference internal" href="#und-jetzt">Und jetzt?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Vorheriges Thema</h4>
+    <p class="topless"><a href="vorwort.html"
+                          title="vorheriges Kapitel">Vorwort</a></p>
+  </div>
+  <div>
+    <h4>Nächstes Thema</h4>
+    <p class="topless"><a href="installation.html"
+                          title="nächstes Kapitel">Installation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Diese Seite</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/erste-schritte.rst.txt"
+            rel="nofollow">Quellcode anzeigen</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             >Index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >weiter</a> |</li>
+        <li class="right" >
+          <a href="vorwort.html" title="Vorwort"
+             >zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Erste Schritte</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 1980, Joachim Breitner.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

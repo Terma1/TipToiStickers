@@ -1,0 +1,8 @@
+exec(open("GUI.py").read())
+exec(open("TextToSpeech.py").read())
+exec(open("OIDmaker.py").read())
+exec(open("MatrixMaker.py").read())
+exec(open("sortedPNG.py").read())
+exec(open("PdfToPng.py").read())
+exec(open("Merging.py").read())
+exec(open("Cleaner.py").read())

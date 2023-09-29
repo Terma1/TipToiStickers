@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Tipps und Tricks &#8212; Das tttool-Buch 1.11 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="prev" title="YAML-Referenz" href="yaml-referenz.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="yaml-referenz.html" title="YAML-Referenz"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Tipps und Tricks</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="tipps-und-tricks">
+<h1>Tipps und Tricks<a class="headerlink" href="#tipps-und-tricks" title="Permalink to this heading">¶</a></h1>
+<p>Hier kannst du zu konkreten Problemstellungen nachlesen, wie du sie
+lösen kannst. Dieses Kapitel lebt auch von deinen Beiträgen!</p>
+<section id="zufallszahlen">
+<span id="id1"></span><h2>Zufallszahlen<a class="headerlink" href="#zufallszahlen" title="Permalink to this heading">¶</a></h2>
+<p>Für Spiele und Rätsel mit dem Tiptoi-Stift ist es häufig nötig, Aktionen
+zufallsgesteuert auszuführen. Auch wenn bisher die Fähigkeiten des
+Stifts in dieser Hinsicht noch nicht ganz verstanden sind, gibt es ein
+paar Techniken, die du hier einsetzen kannst.</p>
+<section id="zufalliges-abspielen-von-audio-dateien">
+<h3>Zufälliges Abspielen von Audio-Dateien<a class="headerlink" href="#zufalliges-abspielen-von-audio-dateien" title="Permalink to this heading">¶</a></h3>
+<p>Wenn es nur darum geht, zufällig eine von mehreren Audio-Dateien
+abzuspielen, genügt der <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehl mit mehreren Argumenten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">P</span><span class="p">(</span><span class="n">bing</span><span class="p">,</span> <span class="n">plopp</span><span class="p">,</span> <span class="n">peng</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Es ist nicht bekannt, wie der Zufallsgenerator hier funktioniert und wie
+gleichmäßig die Verteilung ist. Manche Anwender haben beobachtet, dass
+die erste Datei häufiger abgespielt wird.</p>
+<p>(TODO: es wäre interessant zu dokumentieren, in welchen
+Ravensburger-Produkten das vorkommt und wie es dort angewendet wird.)</p>
+</section>
+<section id="timer">
+<h3>Timer<a class="headerlink" href="#timer" title="Permalink to this heading">¶</a></h3>
+<p>Der Stift verfügt über eine Art Timer, den du per Befehl <code class="docutils literal notranslate"><span class="pre">T()</span></code>
+abfragen kannst:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Timer-Wert in $register speichern
+T($register, 65535)
+</pre></div>
+</div>
+<p><strong>Syntax:</strong> T(<em>register</em>, <em>modulo</em>)</p>
+<ul class="simple">
+<li><p><em>register</em>: Ziel der Berechnung</p></li>
+<li><p><em>modulo</em>: Der Timer-Wert wird per Modulo-Operation (Teilungsrest) auf
+den Bereich 0–<em>modulo</em> begrenzt.</p></li>
+</ul>
+<p>Die so erhaltenen Werte kannst du unter Umständen bereits als
+Zufallszahlen einsetzen, jedoch gibt es ein paar Probleme:</p>
+<ul class="simple">
+<li><p>Aufeinanderfolgende Abrufe des Timers liefern monoton ansteigende
+Werte.</p></li>
+<li><p>Während der Stift inaktiv ist, läuft der Timer langsamer.</p></li>
+<li><p>Ein zweimaliger Aufruf innerhalb der selben Anweisung liefert exakt
+den gleichen Wert.</p></li>
+</ul>
+<p>Reicht der Timer also nicht aus, kannst du dir mit Pseudo-Zufallszahlen
+behelfen:</p>
+</section>
+<section id="algorithmen-zur-erzeugung-von-pseudo-zufallszahlen">
+<h3>Algorithmen zur Erzeugung von Pseudo-Zufallszahlen<a class="headerlink" href="#algorithmen-zur-erzeugung-von-pseudo-zufallszahlen" title="Permalink to this heading">¶</a></h3>
+<p>Als Pseudo-Zufallszahlen bezeichnet man Reihen von Zahlen, welche aus
+einer deterministischen Berechnung hervorgehen, und daher natürlich
+nicht wirklich zufällig sind, aber wie zufällig erscheinen. Indem du den
+Timer als Startwert (<em>seed</em>) verwendest, erhältst du eine in der Praxis
+nicht vorhersagbare Zahlenfolge.</p>
+<p>Eine einfache Implementation sieht beispielsweise folgendermaßen aus:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>random:
+  - T($r,65535) $rnd+=$r $rnd*=25173 $rnd+=13849
+</pre></div>
+</div>
+<p>Nach Aufruf von <code class="docutils literal notranslate"><span class="pre">random</span></code> befindet sich im Register <code class="docutils literal notranslate"><span class="pre">$rnd</span></code> eine
+Zufallszahl zwischen 0 und 65535. Der Wertebereich lässt sich durch
+Modulo beschränken:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>random:
+  - T($r,65535) $rnd+=$r $rnd*=25173 $rnd+=13849 $wuerfel:=$rnd $wuerfel%=6 $wuerfel+=1
+</pre></div>
+</div>
+<p>In diesem Beispiel erhält <code class="docutils literal notranslate"><span class="pre">$wuerfel</span></code> einen zufälligen Wert zwischen 1
+und 6.</p>
+<p>(TODO: Angaben darüber ergänzen, wie gut dieser Algorithmus
+funktioniert) (TODO: weitere PRNG-Algorithmen)</p>
+</section>
+</section>
+<section id="unterbrechen-von-audio-verhindern">
+<span id="unterbrechenvonaudio"></span><h2>Unterbrechen von Audio verhindern<a class="headerlink" href="#unterbrechen-von-audio-verhindern" title="Permalink to this heading">¶</a></h2>
+<p>Wenn man auf einen Code tippt, der einen <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehl enthält, während der Tiptoi-Stift gerade eine Audio-Datei abspielt, dann wird normalerweise sofort die neue Audio-Datei abgespielt und das Abspiel der aktuellen Audio-Datei dadurch unterbrochen. Falls dies nicht erwünscht ist, so kannst du das Abspielen einer Audio-Datei folgendermaßen gegen solches Unterbrechen „schützen“:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>code1:
+  - $p==1?
+  - $p:=1 J(_p0) P(audio1)
+code2:
+  - $p==1?
+  - $p:=1 J(_p0) P(audio2)
+...
+_p0:
+  - $p:=0
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Das Register <code class="docutils literal notranslate"><span class="pre">$p</span></code> hat den Wert 0, wenn gerade nichts abgespielt wird, und 1, während etwas abgespielt wird.</p></li>
+<li><p>Jedes Skript muss mit der Zeile <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">$p==1?</span></code> beginnen. Falls <code class="docutils literal notranslate"><span class="pre">$p</span></code> den Wert 1 hat wird das Skript dann nicht weiter ausgeführt und ein laufendes Abspiel daher nicht unterbrochen.</p></li>
+<li><p>Ein Abspiel wird durch die Konstruktion <code class="docutils literal notranslate"><span class="pre">$p:=1</span> <span class="pre">J(_p0)</span> <span class="pre">P(audio)</span></code> „geschützt“. Dies bewirkt, dass der Wert im Register <code class="docutils literal notranslate"><span class="pre">$p</span></code> auf 1 gesetzt wird und die angegebene Audio-Datei abgespielt wird. Zudem wird <strong>nach Ende des Abspiels</strong> zum Skript <code class="docutils literal notranslate"><span class="pre">_p0</span></code> gesprungen. Dies nutzt das (noch nicht verstandene) Zusammenspiel von <code class="docutils literal notranslate"><span class="pre">J()</span></code>-Befehl und <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehl, wobei der <code class="docutils literal notranslate"><span class="pre">J()</span></code>-Befehl <strong>vor</strong> dem <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehl stehen muss!</p></li>
+<li><p>Das Skript <code class="docutils literal notranslate"><span class="pre">_p0</span></code> setzt das Register <code class="docutils literal notranslate"><span class="pre">$p</span></code> wieder auf den Wert 0 zurück.</p></li>
+</ul>
+<p><strong>Beachte:</strong></p>
+<ul>
+<li><p>Zwei aufeinander folgende <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehle können durch die Konstruktion <code class="docutils literal notranslate"><span class="pre">J(_p0)</span> <span class="pre">P(sag_dies)</span> <span class="pre">P(dann_das)</span></code> leider <strong>nicht</strong> „geschützt“ werden. Tippst du während des Abspiels der ersten Audio-Datei (<code class="docutils literal notranslate"><span class="pre">sag_dies</span></code>) auf einen OID-Code, so wird die zweite Audio-Datei (<code class="docutils literal notranslate"><span class="pre">dann_das</span></code>) nicht mehr abgespielt. Zum Skript <code class="docutils literal notranslate"><span class="pre">_p0</span></code> wird aber dennoch gesprungen, so dass das Register <code class="docutils literal notranslate"><span class="pre">$p</span></code> auf den Wert 0 zurückgesetzt wird. Varianten der <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehle wie etwa <code class="docutils literal notranslate"><span class="pre">PA(sag_dies,</span> <span class="pre">dann_das)</span></code> ändern daran nichts. Allerdings kann man sich behelfen, indem man eine neue Audio-Datei <code class="docutils literal notranslate"><span class="pre">sag_dies_dann_das</span></code> erstellt und nur einen Befehl <code class="docutils literal notranslate"><span class="pre">P(sag_dies_dann_das)</span></code> zum Abspielen nutzt.</p></li>
+<li><p>Während der Tiptoi-Stift eine Audio-Datei abspielt können durchaus OID-Codes angetippt werden und auch einfache arithmetische Befehle ausgeführt werden (z.B. den Wert in einem Register erhöhen), ohne das Abspiel zu unterbrechen. Es dürfen nur keine <code class="docutils literal notranslate"><span class="pre">P()</span></code>-Befehle oder <code class="docutils literal notranslate"><span class="pre">J()</span></code>-Befehle ausgeführt werden.</p></li>
+<li><p>Du kannst auch Skripte haben, die selbst „geschützte“ Abspiele unterbrechen (etwa ein „Stop“-Skript):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>stop:
+  - $p:=0 P(nichts)
+</pre></div>
+</div>
+<p>Du musst dann aber darauf achten, das Register <code class="docutils literal notranslate"><span class="pre">$p</span></code> wieder auf 0 zurück zu setzen.</p>
+</li>
+</ul>
+</section>
+<section id="hintergrundmuster">
+<h2>Hintergrundmuster<a class="headerlink" href="#hintergrundmuster" title="Permalink to this heading">¶</a></h2>
+<p>Es kann optisch schöner sein, wenn nicht nur die aktiven Bereiche eines Tiptoi-Werkes mit OID-Codes versehen sind, sondern alle. Dazu kannst du ein neutrales Muster verwenden, dass vom Tiptoi-Stift einfach ignoriert wird, und das auch ein laufendes Skript nicht unterbricht. Dieses Muster erzeugst du mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./tttool oid-code --raw 65535
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Inhaltsverzeichnis</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Tipps und Tricks</a><ul>
+<li><a class="reference internal" href="#zufallszahlen">Zufallszahlen</a><ul>
+<li><a class="reference internal" href="#zufalliges-abspielen-von-audio-dateien">Zufälliges Abspielen von Audio-Dateien</a></li>
+<li><a class="reference internal" href="#timer">Timer</a></li>
+<li><a class="reference internal" href="#algorithmen-zur-erzeugung-von-pseudo-zufallszahlen">Algorithmen zur Erzeugung von Pseudo-Zufallszahlen</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#unterbrechen-von-audio-verhindern">Unterbrechen von Audio verhindern</a></li>
+<li><a class="reference internal" href="#hintergrundmuster">Hintergrundmuster</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Vorheriges Thema</h4>
+    <p class="topless"><a href="yaml-referenz.html"
+                          title="vorheriges Kapitel">YAML-Referenz</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Diese Seite</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tipps-und-tricks.rst.txt"
+            rel="nofollow">Quellcode anzeigen</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             >Index</a></li>
+        <li class="right" >
+          <a href="yaml-referenz.html" title="YAML-Referenz"
+             >zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Tipps und Tricks</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 1980, Joachim Breitner.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

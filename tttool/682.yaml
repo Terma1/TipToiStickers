@@ -1,0 +1,5 @@
+product-id: 682
+media-path: "audio/%s"
+init: $mode:=1
+welcome: audio_1
+scripts:

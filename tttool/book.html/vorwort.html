@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Vorwort &#8212; Das tttool-Buch 1.11 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Erste Schritte" href="erste-schritte.html" />
+    <link rel="prev" title="Das tttool-Buch" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="erste-schritte.html" title="Erste Schritte"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Das tttool-Buch"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Vorwort</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="vorwort">
+<h1>Vorwort<a class="headerlink" href="#vorwort" title="Permalink to this heading">¶</a></h1>
+<p>Seit den frühen 2010er Jahren erfreut der Tiptoi-Stift aus dem Hause
+Ravensburger Kinder in Deutschland und in aller Welt. Mit ihm entlockt
+das Kind den schön gestalteten Tiptoi-Büchern und -Spielen allerlei
+Töne, Geräusche, Musik und Geschichten. Offensichtlich steckt in dem
+Stift ein kleiner Computer, auf dem kleine Programme ablaufen. Da stellt
+sich dir sicherlich die Frage: Kannst du mit dem Stift noch mehr machen,
+als nur auf die original Ravensburger-Produkte zu reagieren?</p>
+<figure class="align-center" id="id2" style="width: 60%">
+<img alt="Tiptoi-Stift mit Spielbrett" src="_images/Tiptoi_spielbrett.png" />
+<figcaption>
+<p><span class="caption-text">Tiptoi-Stift mit Spielbrett <a class="footnote-reference brackets" href="#bild" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+<p>Ja, kannst du! Denn – nach einigem Reverse-Engineering der Dateien, die
+man auf den Stift lädt, wenn man ein neues Produkt gekauft hat, sowie
+der feinen Punktmuster, die auf die Produkte gedruckt sind – bildete
+sich eine kleine Gemeinschaft von Tiptoi-Bastlern, die allerlei kleine
+und große eigene Tiptoi-Bücher und -Spiele entwickelt haben. Technisch
+dreht sich dabei alles um das <code class="docutils literal notranslate"><span class="pre">tttool</span></code>, ein Kommandozeilenprogramm mit
+dem man die Tiptoi-Dateien und -Codes erzeugt.</p>
+<p>Dieses Buch ist sozusagen das Handbuch zum <code class="docutils literal notranslate"><span class="pre">tttool</span></code>, aber noch mehr:
+Es erklärt dir allgemeines zur Funktionsweise des Stiftes und wie du
+dein eigenes Tiptoi-Projekt verwirklichst.</p>
+<section id="rechtliches">
+<h2>Rechtliches<a class="headerlink" href="#rechtliches" title="Permalink to this heading">¶</a></h2>
+<p>Eine häufig gestellte Frage ist: Darf ich das überhaupt. Diese Frage
+lässt sich nicht einfach beantworten, und keiner der Autoren ist Jurist.</p>
+<p>Was auf jeden Fall gar nicht geht, ist mit dem <code class="docutils literal notranslate"><span class="pre">tttool</span></code> ein
+Tiptoi-kompatibles Produkt zu erstellen und so zu tun, als ob es von
+Ravenburger sei.</p>
+<p>Was sicherlich auch Ärger gibt, ist wenn du dein eigenes Tiptoi-Produkt
+erstellst und kommerziell vertreibst, oder damit etwas machst das der
+Marke “Tiptoi” schadet – etwa ein eindeutig für Kinder ungeeignetes
+Thema.</p>
+<p>Alles andere – Werke für den Eigengebrauch oder als Geschenk,
+Anleitungen online, eine offene Diskussion über die Funktionsweise des
+Stifts – hat irgendwer schon mal gemacht. Wir gehen davon aus dass
+Ravensburger davon weiß und uns stillschweigend – vielleicht gar wohlwollend – gewähren lässt.</p>
+</section>
+<section id="grafische-tools">
+<h2>Grafische Tools<a class="headerlink" href="#grafische-tools" title="Permalink to this heading">¶</a></h2>
+<p>Das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> ist ein Kommandozeilentool. Wer sich davon nicht
+abschrecken lässt, kann tolle Sachen damit machen. Wer es einfacher haben
+will, sollte sich folgende Projekte anschauen, die allesamt auf
+<code class="docutils literal notranslate"><span class="pre">tttool</span></code> aufbauen:</p>
+<ul class="simple">
+<li><p>Andreas Grimme hat mit
+<a class="reference external" href="https://github.com/sidiandi/ttaudio#readme">ttaudio</a> eine
+Windows-GUI erstellt, falls man einfach nur ein paar Audio-Dateien
+auf den Stift laden will.</p></li>
+<li><p>Till Korten hat mit
+<a class="reference external" href="https://github.com/thawn/ttmp32gme">ttmp32gme</a> eine grafische
+Anwendung (Windows, OS X und Linux) erstellt, die ebenfalls
+Audio-Dateien auf den Stift lädt und sehr schöne Übersichten zum
+Antippen druckt.</p></li>
+<li><p>Auf der Plattform <a class="reference external" href="https://soundolino.ch/">https://soundolino.ch/</a> kann man Tiptoi-kompatible Sticker
+mit für den Unterrichtseinsatz geeigneter Vertonung bestellen, selber drucken und
+auf der Webseite auch sehr einfach mit eigenen Tönen versehen.</p></li>
+</ul>
+</section>
+<section id="weiterfuhrende-informationen">
+<h2>Weiterführende Informationen<a class="headerlink" href="#weiterfuhrende-informationen" title="Permalink to this heading">¶</a></h2>
+<p>Das Ziel dieses Buches ist, dir alles nötige über die Bastelei mit dem Tiptoi-Stift zu erklären. Doch dieses Ziel wird vermutlich nie erreicht… solltest du also mehr Informationen brauchen, findest du sie hier:</p>
+<ul class="simple">
+<li><p>Du solltest unbedingt die <a class="reference external" href="https://lists.nomeata.de/mailman/listinfo/tiptoi">tiptoi-Mailingliste</a> abonnieren. Hier tauschen sich  Tiptoi-Bastler aus und irgendwer kann dir sicherlich weiterhelfen. Auch freuen wir uns sehr zu erfahren, was du so mit dem <code class="docutils literal notranslate"><span class="pre">tttool</span></code> auf die Beine gestellt hast.</p></li>
+<li><p>Fehler im <code class="docutils literal notranslate"><span class="pre">tttool</span></code> oder Verbesserungsvorschläge, sowohl zum <code class="docutils literal notranslate"><span class="pre">tttool</span></code> als auch zu diesem Buch, darfst du gerne über den <a class="reference external" href="https://github.com/entropia/tip-toi-reveng/issues">Github-Bugtracker</a> melden.</p></li>
+<li><p>Wenn du dich für technische Details interessierst, die das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> eigentlich vor dir versteckt, so solltest du ins <a class="reference external" href="https://github.com/entropia/tip-toi-reveng/wiki">Wiki der Github-Seite</a> schauen.</p></li>
+</ul>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="bild" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, by
+Schwesterschlumpf, from Wikimedia Commons</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Inhaltsverzeichnis</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Vorwort</a><ul>
+<li><a class="reference internal" href="#rechtliches">Rechtliches</a></li>
+<li><a class="reference internal" href="#grafische-tools">Grafische Tools</a></li>
+<li><a class="reference internal" href="#weiterfuhrende-informationen">Weiterführende Informationen</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Vorheriges Thema</h4>
+    <p class="topless"><a href="index.html"
+                          title="vorheriges Kapitel">Das tttool-Buch</a></p>
+  </div>
+  <div>
+    <h4>Nächstes Thema</h4>
+    <p class="topless"><a href="erste-schritte.html"
+                          title="nächstes Kapitel">Erste Schritte</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Diese Seite</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/vorwort.rst.txt"
+            rel="nofollow">Quellcode anzeigen</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             >Index</a></li>
+        <li class="right" >
+          <a href="erste-schritte.html" title="Erste Schritte"
+             >weiter</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Das tttool-Buch"
+             >zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Vorwort</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 1980, Joachim Breitner.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

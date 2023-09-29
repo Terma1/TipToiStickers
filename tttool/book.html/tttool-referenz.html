@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Die tttool-Befehle &#8212; Das tttool-Buch 1.11 Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="YAML-Referenz" href="yaml-referenz.html" />
+    <link rel="prev" title="Konzepte" href="konzepte.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="yaml-referenz.html" title="YAML-Referenz"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="konzepte.html" title="Konzepte"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Die <code class="docutils literal notranslate"><span class="pre">tttool</span></code>-Befehle</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="die-tttool-befehle">
+<span id="tttool"></span><h1>Die <code class="docutils literal notranslate"><span class="pre">tttool</span></code>-Befehle<a class="headerlink" href="#die-tttool-befehle" title="Permalink to this heading">¶</a></h1>
+<p>Das <code class="docutils literal notranslate"><span class="pre">tttool</span></code>-Programm kann GME-Dateien zusammenbauen, zerlegen und die zugehörigen OID-Codes erstellen. Dazu unterstützt es eine Reihe von Unterbefehlen (<code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">assemble</span></code>, <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">export</span></code> etc.), die wir im folgenden im Detail erklären.</p>
+<p>Dieses Handbuch erklärt nur die Befehle, die für „normale Anwender“ relevant sind. Das Werkzeug unterstützt auch bei der Analyse von GME-Dateien (z.B. <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">explain</span></code>), diese Features sind allerdings nur für Entwickler relevant.</p>
+<section id="gme-datei-zusammenbauen">
+<span id="tttool-assemble"></span><h2>GME-Datei zusammenbauen<a class="headerlink" href="#gme-datei-zusammenbauen" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>tttool</strong> <strong>assemble</strong> <em>eingabe.yaml</em></div>
+<div class="line"><strong>tttool</strong> <strong>assemble</strong> <em>eingabe.yaml</em> <em>ausgabe.gme</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="n">assemble</span> <span class="n">MeinTaschenrechner</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Mit diesem Befehl baust du eine GME-Datei: Wenn <em>eingabe.yaml</em> eine gültige YAML-Datei, wie im Kapitel „<a class="reference internal" href="yaml-referenz.html#yaml-referenz"><span class="std std-ref">YAML-Referenz</span></a>“ beschrieben ist, so schreibt das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die darin enthaltene Logik, zusammen mit den Audio-Dateien, in die Datei <em>ausgabe.gme</em>.</p>
+<p>Wenn du keinen zweiten Dateinamen angibst, so schreibt das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die Ausgabe nach <em>eingabe.gme</em>.</p>
+<p>Wenn die Datei <em>eingabe.yaml</em> benannte OID-Codes, wie sie in <a class="reference internal" href="yaml-referenz.html#code-namen"><span class="std std-ref">der YAML-Referenz</span></a> beschrieben sind, enthält, so vergibt <code class="docutils literal notranslate"><span class="pre">tttool</span></code> selbstständig Code-Nummern. Damit sich diese bei weiteren Aufrufen von <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">assemble</span></code> (or <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-codes</span></code>, siehe unten) nicht ändern, merkt sich das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> die Zuordnung, indem es die Datei <em>eingabe.codes.yaml</em> erzeugt. Diese solltest du nicht löschen.</p>
+</section>
+<section id="oid-codes-erzeugen">
+<span id="tttool-oid-table"></span><span id="tttool-oid-code"></span><span id="tttool-oid-codes"></span><h2>OID-Codes erzeugen<a class="headerlink" href="#oid-codes-erzeugen" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>tttool</strong> <em>Muster-Einstellungen</em> <strong>oid-code</strong> <em>code</em></div>
+<div class="line"><strong>tttool</strong> <em>Muster-Einstellungen</em> <strong>oid-code</strong> <em>von</em><strong>-</strong><em>bis</em></div>
+<div class="line"><strong>tttool</strong> <em>Muster-Einstellungen</em> <strong>oid-codes</strong> <em>eingabe.yaml</em></div>
+<div class="line"><strong>tttool</strong> <em>Muster-Einstellungen</em> <strong>oid-table</strong> <em>eingabe.yaml</em></div>
+<div class="line"><strong>tttool</strong> <em>Muster-Einstellungen</em> <strong>oid-table</strong> <em>eingabe.yaml</em> <em>ausgabe.pdf</em></div>
+<div class="line"><strong>tttool</strong> <em>Muster-Einstellungen</em> <strong>oid-table</strong> <em>eingabe.yaml</em> <em>ausgabe.svg</em></div>
+</div>
+</dd>
+<dt>Mögliche Muster-Einstellungen:</dt><dd><div class="line-block">
+<div class="line"><strong>-</strong><strong>-image-format</strong> <strong>PNG</strong></div>
+<div class="line"><strong>-</strong><strong>-image-format</strong> <strong>PDF</strong></div>
+<div class="line"><strong>-</strong><strong>-image-format</strong> <strong>SVG</strong></div>
+<div class="line"><strong>-</strong><strong>-image-format</strong> <strong>SVG+PNG</strong></div>
+<div class="line"><strong>-</strong><strong>-code-dim</strong> <em>Größe</em></div>
+<div class="line"><strong>-</strong><strong>-code-dim</strong> <em>Breite</em><strong>x</strong><em>Höhe</em></div>
+<div class="line"><strong>-</strong><strong>-dpi</strong> <em>DPI</em></div>
+<div class="line"><strong>-</strong><strong>-pixel-size</strong> <em>Zahl</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="n">oid</span><span class="o">-</span><span class="n">code</span> <span class="mi">998</span>
+<span class="n">tttool</span> <span class="o">--</span><span class="n">image</span><span class="o">-</span><span class="nb">format</span> <span class="n">PDF</span> <span class="n">oid</span><span class="o">-</span><span class="n">code</span> <span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="o">-</span><span class="mi">100</span>
+<span class="n">tttool</span> <span class="n">oid</span><span class="o">-</span><span class="n">codes</span> <span class="n">MeinTaschenrechner</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">tttool</span> <span class="o">--</span><span class="n">code</span><span class="o">-</span><span class="n">dim</span> <span class="mi">20</span><span class="n">x20</span> <span class="n">oid</span><span class="o">-</span><span class="n">table</span> <span class="n">MeinTaschenrechner</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> kann OID-Muster in verschiedenen Formaten erzeugen – das brauchst du dann, wenn du deine eigenen Tiptoi-Produkte gestalten willst. Es versteht dazu mehrere Befehle, je nach dem woher es wissen soll, zu welche Codes es die Muster erzeugen soll, und mehrere Optionen, die steuern, wie die Muster auszusehen haben.</p>
+<section id="oid-codes-auswahlen">
+<h3>OID-Codes auswählen<a class="headerlink" href="#oid-codes-auswahlen" title="Permalink to this heading">¶</a></h3>
+<p>Wenn du einfach nur ein bestimmtes Muster erzeugen willst, so verwendest du den <code class="docutils literal notranslate"><span class="pre">oid-code</span></code>-Befehl, und gibst das Muster an. Wenn du zum Beispiel</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="n">oid</span><span class="o">-</span><span class="n">code</span> <span class="mi">998</span>
+</pre></div>
+</div>
+<p>ausführst, erstellt dir <code class="docutils literal notranslate"><span class="pre">tttool</span></code> eine Datei <code class="docutils literal notranslate"><span class="pre">oid-998.png</span></code> (oder <code class="docutils literal notranslate"><span class="pre">oid-998.svg</span></code>, wenn du SVG als Format ausgewählt hast).</p>
+<p>Du kannst auch mehrere Codes und Code-Bereiche auf einmal auswählen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="n">oid</span><span class="o">-</span><span class="n">code</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="o">-</span><span class="mi">110</span>
+</pre></div>
+</div>
+<p>Aber oft willst du einfach alle Codes eines GME-Projektes erzeugen. Dazu kannst verwendest du <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-codes</span></code>::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tttool oid-codes example.yaml
+Writing oid-42-START.png.. (Code 42, raw code 272)
+Writing oid-42-REPLAY.png.. (Code 13445, raw code 9250)
+Writing oid-42-STOP.png.. (Code 13446, raw code 9251)
+Writing oid-42-8065.png.. (Code 8065, raw code 3700)
+Writing oid-42-8066.png.. (Code 8066, raw code 3701)
+Writing oid-42-8067.png.. (Code 8067, raw code 3702)
+</pre></div>
+</div>
+<p>Die erste Zahl im Dateinamen ist die Produkt-ID des Projekts, was dir helfen soll, die Dateien besser zuzuordnen. Wenn die YAML-Datei selbst explizit mit OID-Codes arbeitet, stehen diese auch im Dateinamen. Wenn du aber, wie in <a class="reference internal" href="yaml-referenz.html#code-namen"><span class="std std-ref">der YAML-Referenz</span></a> erläutert, mit Code-Namen arbeitest, stehen die nachher auch im Dateinamen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tttool oid-codes example2.yaml
+Writing oid-42-START.png.. (Code 42, raw code 272)
+Writing oid-42-REPLAY.png.. (Code 13445, raw code 9250)
+Writing oid-42-STOP.png.. (Code 13446, raw code 9251)
+Writing oid-42-conditional.png.. (Code 13447, raw code 9252)
+Writing oid-42-hello.png.. (Code 13448, raw code 9253)
+Writing oid-42-registers.png.. (Code 13449, raw code 9254)
+</pre></div>
+</div>
+<p>Zuletzt kannst du auch alle Codes eines Projektes in eine einzelne PDF- oder SVG-Datei schreiben. Die Datei enthält dann eine schlichte, übersichtliche Tabelle mit Feldern für alle Codes, was sehr geschickt während der Entwicklung deines Projektes sein kann – so kannst du deine Programm-Logik schon planen und testen, bevor du dich and die grafische Gestaltung machst. Du erstellst die Tabelle einfach mit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tttool oid-table example2.yaml
+</pre></div>
+</div>
+<p>und findest danach eine <code class="docutils literal notranslate"><span class="pre">example2.pdf</span></code> im aktuellen Verzeichnis.</p>
+</section>
+<section id="datei-formate">
+<h3>Datei-Formate<a class="headerlink" href="#datei-formate" title="Permalink to this heading">¶</a></h3>
+<p>Das <code class="docutils literal notranslate"><span class="pre">tttool</span></code> unterstützt folgende Formate für die Muster</p>
+<ul class="simple">
+<li><p>PNG (mittels <code class="docutils literal notranslate"><span class="pre">--image-format</span> <span class="pre">PNG</span></code>) ist ein pixelbasiertes Bildformat. Es eignet sich gut wenn du dein Projekt mit einem Bildverarbeitungsprogramm wie GIMP oder Photoshop erzeugst. Achte darauf dass du das Bild nach dem Import in dein Programm nicht skalierst oder drehst, sondern allenfalls zuschneidest. PNG ist das Standardformat für <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-code</span></code> und <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-codes</span></code>, und wird von <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-table</span></code> nicht unterstützt.</p></li>
+<li><p>SVG (mittels <code class="docutils literal notranslate"><span class="pre">--image-format</span> <span class="pre">SVG</span></code>) ist ein Vektor-Format, und eigentlich sich gut für die Weiterverarbeitung in Zeichenprogrammen wie Inkscape oder Illustrator. So kann man zum Beispiel mit <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">--image-format</span> <span class="pre">SVG</span> <span class="pre">oid-table</span></code> eine SVG-Datei mit allen Mustern erzeugen, und diese dann weiterverarbeiten. SVG wird von allen Befehlen unterstützt.</p></li>
+<li><p>SVG mit PNG (mittels <code class="docutils literal notranslate"><span class="pre">--image-format</span> <span class="pre">SVG+PNG</span></code>) ist eine Variante, bei der zwar als SVG-Dateien erzeugen werden, aber in der SVG-Datei das Muster selbst als PNG-Datei angelegt ist. Dies kann, je nach verwendetem Programm und Drucker, eventuell zu besser erkennbaren Mustern führen.</p></li>
+<li><p>PDF (mittels <code class="docutils literal notranslate"><span class="pre">--image-format</span> <span class="pre">PDF</span></code>) wird nur von <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">oid-table</span></code> unterstützt und ist dort auch die Standardeinstellung, und eignet sich gut zum Drucken der Tabelle, jedoch nur bedingt für die Weiterverarbeitung.</p></li>
+</ul>
+</section>
+<section id="muster-einstellungen">
+<h3>Muster-Einstellungen<a class="headerlink" href="#muster-einstellungen" title="Permalink to this heading">¶</a></h3>
+<p>Mit folgenden Optionen kannst du das nachjustieren, wie das Muster erstellt wird – je nach Drucker funktionieren andere Einstellungen besser.</p>
+<ul class="simple">
+<li><p>Mit der Option <code class="docutils literal notranslate"><span class="pre">--code-dim</span></code> legst du fest, wie groß das Muster erzeugt werden soll. Du kannst entweder eine Zahl angeben, dann bekommst du ein Quadrat mit der angegebenen Seitenlänge in Millimeter, also <code class="docutils literal notranslate"><span class="pre">--code-dim</span> <span class="pre">30</span></code> für ein 3×3cm Quadrat (dies ist die Standard-Einstellung). Oder du gibst mit zwei Zahlen die Breite und Höhe an, etwa <code class="docutils literal notranslate"><span class="pre">--code-dim</span> <span class="pre">210x297</span></code> für ein Muster in A4-Größe.</p></li>
+<li><p>Die Option <code class="docutils literal notranslate"><span class="pre">--dpi</span></code> gibt die gewünschte Auflösung des Musters an, in der im Druck üblichen Einheit Punkt-Pro-Zoll (dots per inch). Der Standardwert ist 1200 DPI, unter Umständen genügen auch 600 DPI.</p></li>
+<li><p>Die Option <code class="docutils literal notranslate"><span class="pre">--pixel-size</span></code> gibt an aus wievielen Pixel (im Quadrat) ein Punkt des Musters gebaut werden soll. Der Standardwert ist 2. Wenn du diese Zahl erhöhst bekommst du ein kräftigeres, schwärzeres Muster, das zwar stärker auffällt, aber vielleicht besser erkannt wird.</p></li>
+</ul>
+</section>
+</section>
+<section id="gme-dateien-extrahieren">
+<span id="tttool-media"></span><span id="tttool-export"></span><h2>GME-Dateien extrahieren<a class="headerlink" href="#gme-dateien-extrahieren" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>tttool</strong> <strong>export</strong> <em>eingabe.gme</em></div>
+<div class="line"><strong>tttool</strong> <strong>export</strong> <em>eingabe.gme</em> <em>ausgabe.yaml</em></div>
+<div class="line"><strong>tttool</strong> <strong>media</strong> <em>eingabe.gme</em></div>
+<div class="line"><strong>tttool</strong> <strong>media</strong> <em>eingabe.gme</em> <strong>-d</strong> <em>verzeichnis</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="n">export</span> <span class="n">WWW_Bauernhof</span><span class="o">.</span><span class="n">gme</span>
+<span class="n">tttool</span> <span class="n">media</span> <span class="n">WWW_Bauernhof</span><span class="o">.</span><span class="n">gme</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Du kannst eine GME-Datei entpacken, und sowohl die Audio-Dateien als auch die die Logik in Form einer YAML-Datei extrahieren. Dies geschieht mit zwei Befehlen:</p>
+<p>Der Befehl <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">export</span> <span class="pre">WWW_Bauernhof.gme</span></code> schreibt die Logik in der GME-Datei in die Datei <code class="docutils literal notranslate"><span class="pre">WWW_Bauernhof.yaml</span></code>, bzw. in die angegebene Ausgabedatei.</p>
+<p>Der Befehl <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">media</span> <span class="pre">WWW_Bauernhof.gme</span></code> schreibt alle Audio-Dateien in der GME-Datei als separate Dateien, meist im OGG-Vorbis-Format mit Dateiendung <code class="docutils literal notranslate"><span class="pre">.ogg</span></code> in das Unterverzeichnis <code class="docutils literal notranslate"><span class="pre">media</span></code>. Du kannst auch ein anderes Verzeichnis mittels <code class="docutils literal notranslate"><span class="pre">-d</span></code> angeben, aber beachte dann die <code class="docutils literal notranslate"><span class="pre">media-path</span></code>-Einstellung in der YAML-Datei anzupassen, denn die vom <code class="docutils literal notranslate"><span class="pre">tttool</span> <span class="pre">export</span></code>-Befehl erstellte YAML-Datei verweist standardmäßig auf <code class="docutils literal notranslate"><span class="pre">media</span></code>.</p>
+</section>
+<section id="sprache-einer-gme-datei-andern">
+<span id="tttool-set-language"></span><h2>Sprache einer GME-Datei ändern<a class="headerlink" href="#sprache-einer-gme-datei-andern" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>tttool</strong> <strong>set-language</strong> <em>sprache</em> <em>datei.gme</em></div>
+<div class="line"><strong>tttool</strong> <strong>set-language</strong> <strong>-</strong><strong>-empty</strong> <em>datei.gme</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="nb">set</span><span class="o">-</span><span class="n">language</span> <span class="n">FRENCH</span> <span class="n">WWW_Bauernhof</span><span class="o">.</span><span class="n">gme</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Um eine sprachspezifische GME-Datei in einem Stift zu benutzen, der auf eine
+andere Sprache eingestellt ist, kann man die Sprache in der GME-Datei mit diesem Befehl ändern. Anders als via <code class="docutils literal notranslate"><span class="pre">export</span></code> und <code class="docutils literal notranslate"><span class="pre">assemble</span></code> bleibt so alle Funktionalität erhalten.</p>
+<p>Typische Sprachangaben sind <code class="docutils literal notranslate"><span class="pre">GERMAN</span></code>, <code class="docutils literal notranslate"><span class="pre">FRENCH</span></code>, <code class="docutils literal notranslate"><span class="pre">RUSSIA</span></code>.</p>
+<p>Achtung: Der Befehl überschreibt die angegebene GME-Datei.</p>
+</section>
+<section id="product-id-einer-gme-datei-andern">
+<span id="tttool-set-product-id"></span><h2>Product-Id einer GME-Datei ändern<a class="headerlink" href="#product-id-einer-gme-datei-andern" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>Format:</dt><dd><div class="line-block">
+<div class="line"><strong>tttool</strong> <strong>set-product-id</strong> <em>id</em> <em>datei.gme</em></div>
+</div>
+</dd>
+<dt>Beispiel:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tttool</span> <span class="nb">set</span><span class="o">-</span><span class="n">product</span><span class="o">-</span><span class="nb">id</span> <span class="mi">991</span> <span class="n">WWW_Bauernhof</span><span class="o">.</span><span class="n">gme</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Es kann manchmal nützlich sein, die Produkt-ID einer GME-Datei zu ändern, etwa um mehrere
+Versionen auf einen Stift zu laden.</p>
+<p>Achtung: Der Befehl überschreibt die angegebene GME-Datei.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Inhaltsverzeichnis</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Die <code class="docutils literal notranslate"><span class="pre">tttool</span></code>-Befehle</a><ul>
+<li><a class="reference internal" href="#gme-datei-zusammenbauen">GME-Datei zusammenbauen</a></li>
+<li><a class="reference internal" href="#oid-codes-erzeugen">OID-Codes erzeugen</a><ul>
+<li><a class="reference internal" href="#oid-codes-auswahlen">OID-Codes auswählen</a></li>
+<li><a class="reference internal" href="#datei-formate">Datei-Formate</a></li>
+<li><a class="reference internal" href="#muster-einstellungen">Muster-Einstellungen</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gme-dateien-extrahieren">GME-Dateien extrahieren</a></li>
+<li><a class="reference internal" href="#sprache-einer-gme-datei-andern">Sprache einer GME-Datei ändern</a></li>
+<li><a class="reference internal" href="#product-id-einer-gme-datei-andern">Product-Id einer GME-Datei ändern</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Vorheriges Thema</h4>
+    <p class="topless"><a href="konzepte.html"
+                          title="vorheriges Kapitel">Konzepte</a></p>
+  </div>
+  <div>
+    <h4>Nächstes Thema</h4>
+    <p class="topless"><a href="yaml-referenz.html"
+                          title="nächstes Kapitel">YAML-Referenz</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Diese Seite</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tttool-referenz.rst.txt"
+            rel="nofollow">Quellcode anzeigen</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             >Index</a></li>
+        <li class="right" >
+          <a href="yaml-referenz.html" title="YAML-Referenz"
+             >weiter</a> |</li>
+        <li class="right" >
+          <a href="konzepte.html" title="Konzepte"
+             >zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Das tttool-Buch 1.11 Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Die <code class="docutils literal notranslate"><span class="pre">tttool</span></code>-Befehle</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 1980, Joachim Breitner.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

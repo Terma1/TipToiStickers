@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+case "$OSTYPE" in
+  linux*)   exec "$(dirname "${BASH_SOURCE[0]}")/linux/tttool" "$@" ;;
+  darwin*)  exec "$(dirname "${BASH_SOURCE[0]}")/osx/tttool" "$@" ;;
+  msys*)    exec "$(dirname "${BASH_SOURCE[0]}")/tttool.exe" "$@" ;;
+  cygwin*)  exec "$(dirname "${BASH_SOURCE[0]}")/tttool.exe" "$@" ;;
+  *)        echo "unsupported operating system $OSTYPE" ;;
+esac
